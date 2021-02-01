@@ -270,6 +270,15 @@ namespace BulletSharp
 			_native = native;
 		}
 
+		public void GetAllContactManifolds(AlignedManifoldArray manifoldArray)
+		{
+			IntPtr valuePtr = btBroadphasePair_getAlgorithm(_native);
+			if (valuePtr != IntPtr.Zero)
+			{
+				btCollisionAlgorithm_getAllContactManifolds(valuePtr, manifoldArray._native);
+			}
+		}
+		
 		public CollisionAlgorithm Algorithm
 		{
             get
@@ -306,5 +315,9 @@ namespace BulletSharp
 		static extern void btBroadphasePair_setPProxy1(IntPtr obj, IntPtr value);
 		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
 		static extern void btBroadphasePair_delete(IntPtr obj);
+		
+		
+		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
+		static extern void btCollisionAlgorithm_getAllContactManifolds(IntPtr obj, IntPtr manifoldArray);
 	}
 }

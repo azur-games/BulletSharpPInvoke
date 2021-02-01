@@ -51,30 +51,30 @@ namespace BulletSharp
                 if ((obj0 != null && !obj0.HasContactResponse) || (obj1 != null && !obj1.HasContactResponse))
                     continue;
 
-                if (collisionPair.Algorithm != null)
-                {
-                    collisionPair.Algorithm.GetAllContactManifolds(m_manifoldArray);
-                }
+                collisionPair.GetAllContactManifolds(m_manifoldArray);
 
                 for (int j = 0; j < m_manifoldArray.Count; j++)
                 {
-                    PersistentManifold manifold = m_manifoldArray[j];
-                    float directionSign = manifold.Body0 == m_ghostObject ? -1f : 1f;
-                    for (int p = 0; p < manifold.NumContacts; p++)
+                    var manifoldId = AlignedManifoldArray.btAlignedManifoldArray_at(m_manifoldArray._native, j);
+                    var bodyId = PersistentManifold.btPersistentManifold_getBody0(manifoldId);
+                    var numContacts = PersistentManifold.btPersistentManifold_getNumContacts(manifoldId);
+                    
+                    float directionSign = bodyId == m_ghostObject._native ? -1f : 1f;
+                    for (int p = 0; p < numContacts; p++)
                     {
-                        ManifoldPoint pt = manifold.GetContactPoint(p);
-
-                        float dist = pt.Distance;
-
+                        var manifoldPointId = PersistentManifold.btPersistentManifold_getContactPoint(manifoldId, p);
+                        float dist = ManifoldPoint.btManifoldPoint_getDistance(manifoldPointId);
                         if (dist < 0.0f)
                         {
+                            Vector3 normalWorldOnB;
+                            ManifoldPoint.btManifoldPoint_getNormalWorldOnB(manifoldPointId, out normalWorldOnB);
                             if (dist < maxPen)
                             {
                                 maxPen = dist;
-                                m_touchingNormal = pt.NormalWorldOnB * directionSign;//??
+                                m_touchingNormal = normalWorldOnB * directionSign;//??
 
                             }
-                            m_currentPosition += pt.NormalWorldOnB * directionSign * dist * 0.2f;
+                            m_currentPosition += normalWorldOnB * directionSign * dist * 0.2f;
                             penetration = true;
                         }
                         else
@@ -103,29 +103,32 @@ namespace BulletSharp
             start = Matrix.Translation(m_currentPosition + upAxisDirection[m_upAxis] * (m_convexShape.Margin + m_addedMargin));
             end = Matrix.Translation(m_targetPosition);
 
-            KinematicClosestNotMeConvexResultCallback callback = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, -upAxisDirection[m_upAxis], 0.7071f);
-            callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
-            callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
-
+            _callback.Me = m_ghostObject;
+            _callback.Up = -upAxisDirection[m_upAxis];
+            _callback.MinSlopeDot = 0.7071f;
+            _callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
+            _callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
+            _callback.ClosestHitFraction = 1;
             if (m_useGhostObjectSweepTest)
             {
-                m_ghostObject.ConvexSweepTestRef(m_convexShape, ref start, ref end, callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                
+                m_ghostObject.ConvexSweepTestRef(m_convexShape, ref start, ref end, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
             }
             else
             {
-                collisionWorld.ConvexSweepTestRef(m_convexShape, ref start, ref end, callback, 0f);
+                collisionWorld.ConvexSweepTestRef(m_convexShape, ref start, ref end, _callback, 0f);
             }
 
-            if (callback.HasHit)
+            if (_callback.HasHit)
             {
                 // Only modify the position if the hit was a slope and not a wall or ceiling.
-                if (Vector3.Dot(callback.HitNormalWorld, upAxisDirection[m_upAxis]) > 0.0)
+                if (Vector3.Dot(_callback.HitNormalWorld, upAxisDirection[m_upAxis]) > 0.0)
                 {
                     // we moved up only a fraction of the step height
-                    m_currentStepOffset = m_stepHeight * callback.ClosestHitFraction;
+                    m_currentStepOffset = m_stepHeight * _callback.ClosestHitFraction;
                     if (m_interpolateUp)
                     {
-                        Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, callback.ClosestHitFraction, out m_currentPosition);
+                        Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, _callback.ClosestHitFraction, out m_currentPosition);
                     }
                     else
                     {
@@ -211,35 +214,35 @@ namespace BulletSharp
 
                 Vector3 sweepDirNegative = m_currentPosition - m_targetPosition;
 
-                KinematicClosestNotMeConvexResultCallback callback = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, sweepDirNegative, 0f);
-                callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
-                callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
-
-
+                _callback.MinSlopeDot = 0;
+                _callback.Up = sweepDirNegative;
+                _callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
+                _callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
+                _callback.ClosestHitFraction = 1;
                 float margin = m_convexShape.Margin;
                 m_convexShape.Margin = margin + m_addedMargin;
 
 
                 if (m_useGhostObjectSweepTest)
                 {
-                    m_ghostObject.ConvexSweepTestRef(m_convexShape, ref start, ref end, callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                    m_ghostObject.ConvexSweepTestRef(m_convexShape, ref start, ref end, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
                 }
                 else
                 {
-                    collisionWorld.ConvexSweepTestRef(m_convexShape, ref start, ref end, callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                    collisionWorld.ConvexSweepTestRef(m_convexShape, ref start, ref end, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
                 }
 
                 m_convexShape.Margin = margin;
 
 
-                fraction -= callback.ClosestHitFraction;
+                fraction -= _callback.ClosestHitFraction;
 
-                if (callback.HasHit)
+                if (_callback.HasHit)
                 {
                     // we moved only a fraction
-                    float hitDistance = (callback.HitPointWorld - m_currentPosition).Length;
+                    float hitDistance = (_callback.HitPointWorld - m_currentPosition).Length;
 
-                    Vector3 hitNormalWorld = callback.HitNormalWorld;
+                    Vector3 hitNormalWorld = _callback.HitNormalWorld;
                     UpdateTargetPositionBasedOnCollision(ref hitNormalWorld, 0f, 1f);
                     Vector3 currentDir = m_targetPosition - m_currentPosition;
                     distance2 = currentDir.LengthSquared;
@@ -296,14 +299,14 @@ namespace BulletSharp
             Vector3 step_drop = upAxisDirection[m_upAxis] * (m_currentStepOffset + downVelocity);
             m_targetPosition -= step_drop;
 
-            KinematicClosestNotMeConvexResultCallback callback = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, upAxisDirection[m_upAxis], m_maxSlopeCosine);
-            callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
-            callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
-
-            KinematicClosestNotMeConvexResultCallback callback2 = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, upAxisDirection[m_upAxis], m_maxSlopeCosine);
-            callback2.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
-            callback2.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
-
+            _callback.MinSlopeDot = m_maxSlopeCosine;
+            _callback.Up = upAxisDirection[m_upAxis];
+            _callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
+            _callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
+            bool hasFirstHit;
+            float hitFraction;
+            Vector3 pointWorld;
+            
             while (true)
             {
                 start = Matrix.Translation(m_currentPosition);
@@ -311,35 +314,49 @@ namespace BulletSharp
 
                 //set double test for 2x the step drop, to check for a large drop vs small drop
                 end_double = Matrix.Translation(m_targetPosition - step_drop);
-
+                
+                bool has_hit_first = false;
+                bool has_hit_second = false;
                 if (m_useGhostObjectSweepTest)
                 {
-                    m_ghostObject.ConvexSweepTestRef(m_convexShape, ref start, ref end, callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
-
-                    if (!callback.HasHit)
+                    _callback.ClosestHitFraction = 1;
+                    m_ghostObject.ConvexSweepTestRef(m_convexShape, ref start, ref end, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                    pointWorld = _callback.HitPointWorld;
+                    has_hit_first = _callback.HasHit;
+                    hitFraction = _callback.ClosestHitFraction;
+                    if (!has_hit_first)
                     {
+                        _callback.ClosestHitFraction = 1;
                         //test a double fall height, to see if the character should interpolate it's fall (full) or not (partial)
-                        m_ghostObject.ConvexSweepTest(m_convexShape, start, end_double, callback2, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                        m_ghostObject.ConvexSweepTest(m_convexShape, start, end_double, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                        has_hit_second = _callback.HasHit;
                     }
                 }
                 else
                 {
+                    _callback.ClosestHitFraction = 1;
                     // this works....
-                    collisionWorld.ConvexSweepTestRef(m_convexShape, ref start, ref end, callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
-
-                    if (!callback.HasHit)
+                    collisionWorld.ConvexSweepTestRef(m_convexShape, ref start, ref end, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                    pointWorld = _callback.HitPointWorld;
+                    has_hit_first = _callback.HasHit;
+                    hitFraction = _callback.ClosestHitFraction;
+                    if (!has_hit_first)
                     {
+                        _callback.ClosestHitFraction = 1;
                         //test a double fall height, to see if the character should interpolate it's fall (large) or not (small)
-                        m_ghostObject.ConvexSweepTest(m_convexShape, start, end_double, callback2, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                        m_ghostObject.ConvexSweepTest(m_convexShape, start, end_double, _callback, collisionWorld.DispatchInfo.AllowedCcdPenetration);
+                        has_hit_second = _callback.HasHit;
                     }
                 }
 
+                hasFirstHit = has_hit_first;
                 float downVelocity2 = (m_verticalVelocity < 0.0f ? -m_verticalVelocity : 0.0f) * dt;
-                bool has_hit = false;
+
+                bool has_hit;
                 if (bounce_fix == true)
-                    has_hit = callback.HasHit || callback2.HasHit;
+                    has_hit = has_hit_first || has_hit_second;
                 else
-                    has_hit = callback2.HasHit;
+                    has_hit = has_hit_second;
 
                 if (downVelocity2 > 0.0f && downVelocity2 < m_stepHeight && has_hit == true && runonce == false
                             && (m_wasOnGround || !m_wasJumping))
@@ -357,11 +374,11 @@ namespace BulletSharp
                 }
                 break;
             }
-
-            if (callback.HasHit || runonce == true)
+            
+            if (hasFirstHit || runonce == true)
             {
                 // we dropped a fraction of the height -> hit floor
-                float fraction = (m_currentPosition.Y - callback.HitPointWorld.Y) / 2;
+                float fraction = (m_currentPosition.Y - pointWorld.Y) / 2;
 
                 //printf("hitpoint: %g - pos %g\n", callback.m_hitPointWorld.getY(), m_currentPosition.getY());
 
@@ -369,7 +386,7 @@ namespace BulletSharp
                 {
                     if (full_drop == true)
                     {
-                        Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, callback.ClosestHitFraction, out m_currentPosition);
+                        Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, hitFraction, out m_currentPosition);
                     }
                     else
                     {
@@ -379,7 +396,7 @@ namespace BulletSharp
                 }
                 else
                 {
-                    Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, callback.ClosestHitFraction, out m_currentPosition);
+                    Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, hitFraction, out m_currentPosition);
                 }
 
                 full_drop = false;
@@ -435,8 +452,10 @@ namespace BulletSharp
             m_currentStepOffset = 0;
             full_drop = false;
             bounce_fix = false;
+            _callback = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, -upAxisDirection[m_upAxis], 0.7071f);
         }
 
+        private KinematicClosestNotMeConvexResultCallback _callback;
         ///btActionInterface interface
         public virtual void UpdateAction(CollisionWorld collisionWorld, float deltaTime)
         {
@@ -756,14 +775,14 @@ namespace BulletSharp
         public KinematicClosestNotMeConvexResultCallback(CollisionObject me, Vector3 up, float minSlopeDot)
             : base(ref zero, ref zero)
         {
-            _me = me;
-            _up = up;
-            _minSlopeDot = minSlopeDot;
+            Me = me;
+            Up = up;
+            MinSlopeDot = minSlopeDot;
         }
 
         public override float AddSingleResult(LocalConvexResult convexResult, bool normalInWorldSpace)
         {
-            if (convexResult.HitCollisionObject == _me)
+            if (convexResult.HitCollisionObject == Me)
             {
                 return 1.0f;
             }
@@ -785,8 +804,8 @@ namespace BulletSharp
             }
 
             float dotUp;
-            Vector3.Dot(ref _up, ref hitNormalWorld, out dotUp);
-            if (dotUp < _minSlopeDot)
+            Vector3.Dot(ref Up, ref hitNormalWorld, out dotUp);
+            if (dotUp < MinSlopeDot)
             {
                 return 1.0f;
             }
@@ -794,8 +813,8 @@ namespace BulletSharp
             return base.AddSingleResult(convexResult, normalInWorldSpace);
         }
 
-        protected CollisionObject _me;
-        protected Vector3 _up;
-        protected float _minSlopeDot;
+        public CollisionObject Me { get; set; }
+        public Vector3 Up;
+        public float MinSlopeDot { get; set; }
     }
 }
