@@ -237,7 +237,7 @@ namespace BulletSharp
 
                 fraction -= _callback.ClosestHitFraction;
 
-                if (_callback.HasHit)
+                if (_callback.HasHit && _callback.HitCollisionObject.UserIndex == 0)
                 {
                     // we moved only a fraction
                     float hitDistance = (_callback.HitPointWorld - m_currentPosition).Length;
