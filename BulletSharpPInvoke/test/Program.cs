@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using BulletSharp;
 using BulletSharp.Math;
 using BulletSharp.SoftBody;
+using CollisionFlags = BulletSharp.CollisionFlags;
 
 namespace BulletSharpTest
 {
