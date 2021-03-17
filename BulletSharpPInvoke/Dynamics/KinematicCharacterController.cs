@@ -459,8 +459,11 @@ namespace BulletSharp
         ///btActionInterface interface
         public virtual void UpdateAction(CollisionWorld collisionWorld, float deltaTime)
         {
-            PreStep(collisionWorld);
-            PlayerStep(collisionWorld, deltaTime);
+            if (!m_skipUpdate)
+            {
+                PreStep(collisionWorld);
+                PlayerStep(collisionWorld, deltaTime);
+            }
         }
 
         ///btActionInterface interface
@@ -481,6 +484,10 @@ namespace BulletSharp
         {
         }
 
+        public void SetSkipUpdate(bool skip)
+        {
+            m_skipUpdate = skip;
+        }
         public virtual void SetWalkDirection(ref Vector3 walkDirection)
         {
             m_useWalkDirection = true;
@@ -733,8 +740,7 @@ namespace BulletSharp
         protected bool m_interpolateUp;
         protected bool full_drop;
         protected bool bounce_fix;
-
-
+        protected bool m_skipUpdate = false;
 
         protected static Vector3[] upAxisDirection = { new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1) };
 
