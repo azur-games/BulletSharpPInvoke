@@ -71,40 +71,30 @@ namespace BulletSharp
                             if (dist < maxPen)
                             {
                                 maxPen = dist;
-                                m_touchingNormal = normalWorldOnB * directionSign;//??
-
                             }
-                            m_currentPosition += normalWorldOnB * directionSign * dist * 0.2f;
+                            m_currentPosition += normalWorldOnB * directionSign * dist;
                             penetration = true;
-                        }
-                        else
-                        {
-                            //printf("touching %f\n", dist);
                         }
                     }
 
-                    //manifold.ClearManifold();
                 }
             }
             Matrix newTrans = m_ghostObject.WorldTransform;
             newTrans.Origin = m_currentPosition;
             m_ghostObject.WorldTransform = newTrans;
-            //	printf("m_touchingNormal = %f,%f,%f\n",m_touchingNormal[0],m_touchingNormal[1],m_touchingNormal[2]);
             return penetration;
         }
 
         protected void StepUp(CollisionWorld collisionWorld)
         {
-            // phase 1: up
             Matrix start, end;
-            m_targetPosition = m_currentPosition + upAxisDirection[m_upAxis] * (m_stepHeight + (m_verticalOffset > 0.0f ? m_verticalOffset : 0.0f));
+            m_targetPosition = m_currentPosition + Vector3.UnitY * (m_stepHeight + (m_verticalOffset > 0.0f ? m_verticalOffset : 0.0f));
 
-            /* FIXME: Handle penetration properly */
-            start = Matrix.Translation(m_currentPosition + upAxisDirection[m_upAxis] * (m_convexShape.Margin + m_addedMargin));
+            start = Matrix.Translation(m_currentPosition + Vector3.UnitY * (m_convexShape.Margin + m_addedMargin));
             end = Matrix.Translation(m_targetPosition);
 
             _callback.Me = m_ghostObject;
-            _callback.Up = -upAxisDirection[m_upAxis];
+            _callback.Up = -Vector3.UnitY;
             _callback.MinSlopeDot = 0.7071f;
             _callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
             _callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
@@ -121,10 +111,8 @@ namespace BulletSharp
 
             if (_callback.HasHit)
             {
-                // Only modify the position if the hit was a slope and not a wall or ceiling.
-                if (Vector3.Dot(_callback.HitNormalWorld, upAxisDirection[m_upAxis]) > 0.0)
+                if (Vector3.Dot(_callback.HitNormalWorld, Vector3.UnitY) > 0.0)
                 {
-                    // we moved up only a fraction of the step height
                     m_currentStepOffset = m_stepHeight * _callback.ClosestHitFraction;
                     if (m_interpolateUp)
                     {
@@ -162,48 +150,21 @@ namespace BulletSharp
                 perpindicularDir = PerpindicularComponent(ref reflectDir, ref hitNormal);
 
                 m_targetPosition = m_currentPosition;
-                /*
-                if (tangentMag != 0.0)
-                {
-                    Vector3 parComponent = parallelDir * (tangentMag * movementLength);
-                    //			printf("parComponent=%f,%f,%f\n",parComponent[0],parComponent[1],parComponent[2]);
-                    m_targetPosition += parComponent;
-                }
-                */
                 if (normalMag != 0.0f)
                 {
                     Vector3 perpComponent = perpindicularDir * (normalMag * movementLength);
-                    //			printf("perpComponent=%f,%f,%f\n",perpComponent[0],perpComponent[1],perpComponent[2]);
                     m_targetPosition += perpComponent;
                 }
-            }
-            else
-            {
-                //		printf("movementLength don't normalize a zero vector\n");
             }
         }
 
         protected void StepForwardAndStrafe(CollisionWorld collisionWorld, ref Vector3 walkMove)
         {
-            //	printf("originalDir=%f,%f,%f\n",originalDir[0],originalDir[1],originalDir[2]);
-            // phase 2: forward and strafe
             Matrix start = Matrix.Identity, end = Matrix.Identity;
             m_targetPosition = m_currentPosition + walkMove;
 
             float fraction = 1.0f;
             float distance2 = (m_currentPosition - m_targetPosition).LengthSquared;
-            //	printf("distance2=%f\n",distance2);
-
-            if (m_touchingContact)
-            {
-                float dot;
-                Vector3.Dot(ref m_normalizedDirection, ref m_touchingNormal, out dot);
-                if (dot > 0.0f)
-                {
-                    //interferes with step movement
-                    //UpdateTargetPositionBasedOnCollision(ref m_touchingNormal, 0.0f, 1.0f);
-                }
-            }
 
             int maxIter = 10;
 
@@ -239,9 +200,6 @@ namespace BulletSharp
 
                 if (_callback.HasHit)
                 {
-                    // we moved only a fraction
-                    float hitDistance = (_callback.HitPointWorld - m_currentPosition).Length;
-
                     Vector3 hitNormalWorld = _callback.HitNormalWorld;
                     UpdateTargetPositionBasedOnCollision(ref hitNormalWorld, 0f, 1f);
                     Vector3 currentDir = m_targetPosition - m_currentPosition;
@@ -250,8 +208,7 @@ namespace BulletSharp
                     {
                         currentDir.Normalize();
                         /* See Quake2: "If velocity is against original velocity, stop ead to avoid tiny oscilations in sloping corners." */
-                        float dot;
-                        Vector3.Dot(ref currentDir, ref m_normalizedDirection, out dot);
+                        Vector3.Dot(ref currentDir, ref m_normalizedDirection, out var dot);
                         if (dot <= 0.0f)
                         {
                             break;
@@ -259,19 +216,13 @@ namespace BulletSharp
                     }
                     else
                     {
-                        //				printf("currentDir: don't normalize a zero vector\n");
                         break;
                     }
                 }
                 else
                 {
-                    // we moved whole way
                     m_currentPosition = m_targetPosition;
                 }
-
-                //	if (callback.m_closestHitFraction == 0.f)
-                //		break;
-
             }
 
         }
@@ -279,13 +230,6 @@ namespace BulletSharp
         {
             Matrix start, end, end_double;
             bool runonce = false;
-
-            // phase 3: down
-            /*float additionalDownStep = (m_wasOnGround && !onGround()) ? m_stepHeight : 0.0;
-            btVector3 step_drop = getUpAxisDirections()[m_upAxis] * (m_currentStepOffset + additionalDownStep);
-            float downVelocity = (additionalDownStep == 0.0 && m_verticalVelocity<0.0?-m_verticalVelocity:0.0) * dt;
-            btVector3 gravity_drop = getUpAxisDirections()[m_upAxis] * downVelocity; 
-            m_targetPosition -= (step_drop + gravity_drop);*/
 
             Vector3 orig_position = m_targetPosition;
 
@@ -296,11 +240,11 @@ namespace BulletSharp
                 downVelocity = m_fallSpeed;
             }
 
-            Vector3 step_drop = upAxisDirection[m_upAxis] * (m_currentStepOffset + downVelocity);
+            Vector3 step_drop = Vector3.UnitY * (m_currentStepOffset + downVelocity);
             m_targetPosition -= step_drop;
 
             _callback.MinSlopeDot = m_maxSlopeCosine;
-            _callback.Up = upAxisDirection[m_upAxis];
+            _callback.Up = Vector3.UnitY;
             _callback.CollisionFilterGroup = GhostObject.BroadphaseHandle.CollisionFilterGroup;
             _callback.CollisionFilterMask = GhostObject.BroadphaseHandle.CollisionFilterMask;
             bool hasFirstHit;
@@ -367,7 +311,7 @@ namespace BulletSharp
                     m_targetPosition = orig_position;
                     downVelocity = m_stepHeight;
 
-                    Vector3 step_drop2 = upAxisDirection[m_upAxis] * (m_currentStepOffset + downVelocity);
+                    Vector3 step_drop2 = Vector3.UnitY * (m_currentStepOffset + downVelocity);
                     m_targetPosition -= step_drop2;
                     runonce = true;
                     continue; //re-run previous tests
@@ -375,16 +319,14 @@ namespace BulletSharp
                 break;
             }
             
-            if (hasFirstHit || runonce == true)
+            if (hasFirstHit || runonce)
             {
                 // we dropped a fraction of the height -> hit floor
                 float fraction = (m_currentPosition.Y - pointWorld.Y) / 2;
 
-                //printf("hitpoint: %g - pos %g\n", callback.m_hitPointWorld.getY(), m_currentPosition.getY());
-
-                if (bounce_fix == true)
+                if (bounce_fix)
                 {
-                    if (full_drop == true)
+                    if (full_drop)
                     {
                         Vector3.Lerp(ref m_currentPosition, ref m_targetPosition, hitFraction, out m_currentPosition);
                     }
@@ -418,25 +360,21 @@ namespace BulletSharp
                     {
                         m_targetPosition += step_drop; //undo previous target change
                         downVelocity = m_fallSpeed;
-                        step_drop = upAxisDirection[m_upAxis] * (m_currentStepOffset + downVelocity);
+                        step_drop = Vector3.UnitY * (m_currentStepOffset + downVelocity);
                         m_targetPosition -= step_drop;
                     }
                 }
-                //printf("full drop - %g, %g\n", m_currentPosition.getY(), m_targetPosition.getY());
-
                 m_currentPosition = m_targetPosition;
             }
         }
 
         public KinematicCharacterController(PairCachingGhostObject ghostObject, ConvexShape convexShape, float stepHeight, int upAxis = 1)
         {
-            m_upAxis = upAxis;
             m_addedMargin = 0.02f;
             m_walkDirection = Vector3.Zero;
             m_useGhostObjectSweepTest = true;
             m_ghostObject = ghostObject;
             m_stepHeight = stepHeight;
-            m_turnAngle = 0f;
             m_convexShape = convexShape;
             m_useWalkDirection = true;	// use walk direction by default, legacy behavior
             m_velocityTimeInterval = 0.0f;
@@ -452,7 +390,7 @@ namespace BulletSharp
             m_currentStepOffset = 0;
             full_drop = false;
             bounce_fix = false;
-            _callback = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, -upAxisDirection[m_upAxis], 0.7071f);
+            _callback = new KinematicClosestNotMeConvexResultCallback(m_ghostObject, -Vector3.UnitY, 0.7071f);
         }
 
         private KinematicClosestNotMeConvexResultCallback _callback;
@@ -469,15 +407,6 @@ namespace BulletSharp
         ///btActionInterface interface
         public void DebugDraw(IDebugDraw debugDrawer)
         {
-        }
-
-        public void SetUpAxis(int axis)
-        {
-            if (axis < 0)
-                axis = 0;
-            if (axis > 2)
-                axis = 2;
-            m_upAxis = axis;
         }
 
         public void SetUpInterpolate(bool v)
@@ -502,11 +431,6 @@ namespace BulletSharp
 
         public void SetVelocityForTimeInterval(ref Vector3 velocity, float timeInterval)
         {
-            //	printf("setVelocity!\n");
-            //	printf("  interval: %f\n", timeInterval);
-            //	printf("  velocity: (%f, %f, %f)\n",
-            //	    velocity.x(), velocity.y(), velocity.z());
-
             m_useWalkDirection = false;
             m_walkDirection = velocity;
             m_normalizedDirection = GetNormalizedVector(ref m_walkDirection);
@@ -543,14 +467,11 @@ namespace BulletSharp
         public void PreStep(CollisionWorld collisionWorld)
         {
             int numPenetrationLoops = 0;
-            m_touchingContact = false;
             while (RecoverFromPenetration(collisionWorld))
             {
                 numPenetrationLoops++;
-                m_touchingContact = true;
                 if (numPenetrationLoops > 4)
                 {
-                    //			printf("character could not recover from penetration = %d\n", numPenetrationLoops);
                     break;
                 }
             }
@@ -562,10 +483,8 @@ namespace BulletSharp
 
         public void PlayerStep(CollisionWorld collisionWorld, float dt)
         {
-            // quick check...
             if (!m_useWalkDirection && m_velocityTimeInterval <= 0.0)
             {
-                //		printf("\n");
                 return;		// no motion
             }
 
@@ -586,29 +505,11 @@ namespace BulletSharp
 
             Matrix xform = m_ghostObject.WorldTransform;
 
-            //	printf("walkDirection(%f,%f,%f)\n",walkDirection[0],walkDirection[1],walkDirection[2]);
-            //	printf("walkSpeed=%f\n",walkSpeed);
-
             StepUp(collisionWorld);
             if (m_useWalkDirection)
             {
-                StepForwardAndStrafe(collisionWorld, ref m_walkDirection);
-            }
-            else
-            {
-                //printf("  time: %f", m_velocityTimeInterval);
-                // still have some time left for moving!
-                float dtMoving =
-                   (dt < m_velocityTimeInterval) ? dt : m_velocityTimeInterval;
-                m_velocityTimeInterval -= dt;
-
-                // how far will we move while we are moving?
-                Vector3 move = m_walkDirection * dtMoving;
-
-                // printf("  dtMoving: %f", dtMoving);
-
-                // okay, step
-                StepForwardAndStrafe(collisionWorld, ref move);
+                var delta = dt * m_walkDirection;
+                StepForwardAndStrafe(collisionWorld, ref delta);
             }
             StepDown(collisionWorld, dt);
 
@@ -626,11 +527,6 @@ namespace BulletSharp
             m_jumpSpeed = jumpSpeed;
         }
 
-        public void SetMaxJumpHeight(float maxJumpHeight)
-        {
-            m_maxJumpHeight = maxJumpHeight;
-        }
-
         public bool CanJump
         {
             get { return OnGround; }
@@ -642,22 +538,11 @@ namespace BulletSharp
             {
                 m_verticalVelocity = m_jumpSpeed;
                 m_wasJumping = true;
-
-                //currently no jumping.
-                //Matrix xform;
-                //m_rigidBody.getMotionState().getWorldTransform (out xform);
-                //Vector3 up = xform.Up;
-                //up.Normalize ();
-                //float magnitude = (1.0f/m_rigidBody.getInvMass()) * 8.0f;
-                //m_rigidBody.applyCentralImpulse (up * magnitude);
             }
 
         }
 
         public float Gravity { get; set; }
-
-        /// The max slope determines the maximum angle that the controller can walk up.
-        /// The slope angle is measured in radians.
         public float MaxSlope
         {
             get { return m_maxSlopeRadians; }
@@ -704,76 +589,30 @@ namespace BulletSharp
 
         protected float m_fallSpeed;
         protected float m_jumpSpeed;
-        protected float m_maxJumpHeight;
         protected float m_maxSlopeRadians; // Slope angle that is set (used for returning the exact value)
         protected float m_maxSlopeCosine;  // Cosine equivalent of m_maxSlopeRadians (calculated once when set, for optimization)
-
-        protected float m_turnAngle;
-
         protected float m_stepHeight;
-
         protected float m_addedMargin;//@todo: remove this and fix the code
-
         ///this is the desired walk direction, set by the user
         protected Vector3 m_walkDirection;
         protected Vector3 m_normalizedDirection;
-
         //some internal variables
         protected Vector3 m_currentPosition;
         float m_currentStepOffset;
         protected Vector3 m_targetPosition;
-
         ///keep track of the contact manifolds
         protected AlignedManifoldArray m_manifoldArray = new AlignedManifoldArray();
-
-        protected bool m_touchingContact;
-        protected Vector3 m_touchingNormal;
         protected bool m_wasOnGround;
         protected bool m_wasJumping;
-
         protected bool m_useGhostObjectSweepTest;
-
-        protected int m_upAxis;
         protected bool m_useWalkDirection;
         protected float m_velocityTimeInterval;
-        
         protected bool m_interpolateUp;
         protected bool full_drop;
         protected bool bounce_fix;
         protected bool m_skipUpdate = false;
-
-        protected static Vector3[] upAxisDirection = { new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1) };
-
     }
-
-
-    ///@todo Interact with dynamic objects,
-    ///Ride kinematicly animated platforms properly
-    ///More realistic (or maybe just a config option) falling
-    /// -> Should integrate falling velocity manually and use that in stepDown()
-    ///Support jumping
-    ///Support ducking
-    public class KinematicClosestNotMeRayResultCallback : ClosestRayResultCallback
-    {
-        static Vector3 zero = new Vector3();
-
-        public KinematicClosestNotMeRayResultCallback(CollisionObject me)
-            : base(ref zero, ref zero)
-        {
-            _me = me;
-        }
-
-        public override float AddSingleResult(LocalRayResult rayResult, bool normalInWorldSpace)
-        {
-            if (rayResult.CollisionObject == _me)
-                return 1.0f;
-
-            return base.AddSingleResult(rayResult, normalInWorldSpace);
-        }
-
-        protected CollisionObject _me;
-    }
-
+    
     public class KinematicClosestNotMeConvexResultCallback : ClosestConvexResultCallback
     {
         static Vector3 zero = new Vector3();
