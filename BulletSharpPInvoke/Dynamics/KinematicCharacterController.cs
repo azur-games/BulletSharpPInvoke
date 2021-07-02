@@ -72,11 +72,16 @@ namespace BulletSharp
                             {
                                 maxPen = dist;
                             }
-                            m_currentPosition += normalWorldOnB * directionSign * dist;
+
+                            var counterPenDir = normalWorldOnB * directionSign;;
+                            m_currentPosition += counterPenDir * dist;
                             penetration = true;
+                            if (counterPenDir.Dot(Vector3.UnitY) > 0)
+                            {
+                                m_verticalVelocity = 0;
+                            }
                         }
                     }
-
                 }
             }
             Matrix newTrans = m_ghostObject.WorldTransform;
