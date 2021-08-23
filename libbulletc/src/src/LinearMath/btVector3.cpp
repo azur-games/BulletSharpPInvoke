@@ -825,7 +825,15 @@ long _mindot_large( const float *vv, const float *vec, unsigned long count, floa
 #define ARM_NEON_GCC_COMPATIBILITY  1
 #include <arm_neon.h>
 #include <sys/types.h>
-#include <sys/sysctl.h> //for sysctlbyname
+
+#ifdef ANDROID
+  #include "NDK/sources/android/cpufeatures/cpu-features.h"
+#endif
+
+#ifdef __APPLE__
+  #include <sys/sysctl.h> //for sysctlbyname
+#endif
+
 
 static long _maxdot_large_v0( const float *vv, const float *vec, unsigned long count, float *dotResult );
 static long _maxdot_large_v1( const float *vv, const float *vec, unsigned long count, float *dotResult );
@@ -843,6 +851,7 @@ static inline uint32_t btGetCpuCapabilities( void )
     static uint32_t capabilities = 0;
     static bool testedCapabilities = false;
 
+    #ifdef __APPLE__
     if( 0 == testedCapabilities)
     {
         uint32_t hasFeature = 0;
@@ -854,6 +863,30 @@ static inline uint32_t btGetCpuCapabilities( void )
 
 		testedCapabilities = true;
     }
+	#endif
+	
+	#ifdef ANDROID
+		{
+			AndroidCpuFamily family;
+			family = android_getCpuFamily();
+			//not all v7 support neon
+			if(family == ANDROID_CPU_FAMILY_ARM)
+			{
+				uint64_t features;
+				features = android_getCpuFeatures();
+				if(features & ANDROID_CPU_ARM_FEATURE_NEON)
+				{
+				  capabilities |= 0x2000;
+				}
+				
+			}
+			//all v8 support neon
+			else if(family == ANDROID_CPU_FAMILY_ARM64)
+			{
+				capabilities |= 0x2000;
+			}
+		}
+	#endif
     
     return capabilities;
 }

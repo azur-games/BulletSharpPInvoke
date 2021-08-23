@@ -173,7 +173,7 @@ inline int	btGetVersion()
 #else
 	//non-windows systems
 
-#if (defined (__APPLE__) && (!defined (BT_USE_DOUBLE_PRECISION)))
+#if ((defined (__APPLE__) || defined (ANDROID))&& (!defined (BT_USE_DOUBLE_PRECISION)))
     #if defined (__i386__) || defined (__x86_64__)
 		#define BT_USE_SIMD_VECTOR3
 		#define BT_USE_SSE

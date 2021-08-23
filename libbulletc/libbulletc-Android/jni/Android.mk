@@ -4,11 +4,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_ARCH_ABI),$(filter $(TARGET_ARCH_ABI), armeabi-v7a x86))
-    LOCAL_CFLAGS := -DHAVE_NEON=1
-ifeq ($(TARGET_ARCH_ABI),x86)
-    LOCAL_CFLAGS += -mssse3
-endif
+ifeq ($(TARGET_ARCH_ABI),$(filter $(TARGET_ARCH_ABI), armeabi-v7a))
+    LOCAL_CFLAGS := -DHAVE_NEON=1 -ANDROID=1
 endif
 include $(CLEAR_VARS)
 
@@ -35,8 +32,8 @@ LOCAL_C_INCLUDES := \
 	../../src/Extras/HACD \
 	../../src/Extras/GIMPACTUtils \
 	../../src/src/BulletInverseDynamics/ \
-	../../src/src/BulletInverseDynamics/details/ 
-	
+	../../src/src/BulletInverseDynamics/details/ \
+	$(NDK_PATH)/sources/android/cpufeatures
 	LOCAL_MODULE := libbulletc
 
 
@@ -45,6 +42,7 @@ LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -ldl -lm -llog
 
 
 LOCAL_SRC_FILES := \
+$(NDK_PATH)/sources/android/cpufeatures/cpu-features.c \
 ../../src/src/BulletSoftBody/btSoftBody.cpp \
 ../../src/src/BulletSoftBody/btSoftBodyConcaveCollisionAlgorithm.cpp \
 ../../src/src/BulletSoftBody/btSoftBodyHelpers.cpp \

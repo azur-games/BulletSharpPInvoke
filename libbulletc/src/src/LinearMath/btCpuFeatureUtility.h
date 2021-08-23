@@ -15,8 +15,13 @@
 #if defined BT_USE_NEON
 #define ARM_NEON_GCC_COMPATIBILITY  1
 #include <arm_neon.h>
-#include <sys/types.h>
-#include <sys/sysctl.h> //for sysctlbyname
+#ifdef ANDROID
+  #include "NDK/sources/android/cpufeatures/cpu-features.h"
+#endif
+#ifdef __APPLE__
+  #include <sys/types.h>
+  #include <sys/sysctl.h> //for sysctlbyname
+#endif
 #endif //BT_USE_NEON
 
 ///Rudimentary btCpuFeatureUtility for CPU features: only report the features that Bullet actually uses (SSE4/FMA3, NEON_HPFP)
@@ -42,6 +47,30 @@ public:
 		}
 
 #ifdef BT_USE_NEON
+		#ifdef ANDROID
+		{
+			AndroidCpuFamily family;
+			family = android_getCpuFamily();
+			//not all v7 support neon
+			if(family == ANDROID_CPU_FAMILY_ARM)
+			{
+				uint64_t features;
+				features = android_getCpuFeatures();
+				if(features & ANDROID_CPU_ARM_FEATURE_NEON)
+				{
+				  capabilities |= CPU_FEATURE_NEON_HPFP;
+				}
+				
+			}
+			//all v8 support neon
+			else if(family == ANDROID_CPU_FAMILY_ARM64)
+			{
+				capabilities |= CPU_FEATURE_NEON_HPFP;
+			}
+		}
+		#endif
+		
+		#ifdef __APPLE__
 		{
 			uint32_t hasFeature = 0;
 			size_t featureSize = sizeof(hasFeature);
@@ -49,6 +78,8 @@ public:
 			if (0 == err && hasFeature)
 				capabilities |= CPU_FEATURE_NEON_HPFP;
 		}
+		#endif
+		
 #endif //BT_USE_NEON
 
 #ifdef  BT_ALLOW_SSE4
