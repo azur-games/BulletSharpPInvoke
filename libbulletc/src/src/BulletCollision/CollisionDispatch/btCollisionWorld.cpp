@@ -70,7 +70,7 @@ btCollisionWorld::btCollisionWorld(btDispatcher* dispatcher,btBroadphaseInterfac
 :m_dispatcher1(dispatcher),
 m_broadphasePairCache(pairCache),
 m_debugDrawer(0),
-m_forceUpdateAllAabbs(true)
+m_forceUpdateAllAabbs(false)
 {
 }
 

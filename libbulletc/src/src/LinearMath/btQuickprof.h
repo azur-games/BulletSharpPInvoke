@@ -15,6 +15,16 @@
 #ifndef BT_QUICK_PROF_H
 #define BT_QUICK_PROF_H
 
+#ifdef _MSC_VER
+#define EXPORT __declspec(dllexport)
+#else
+#if __GNUC__ >= 4
+#define EXPORT __attribute__ ((visibility("default")))
+#else
+#define EXPORT
+#endif
+#endif
+
 //To disable built-in profiling, please comment out next line
 #define BT_NO_PROFILE 1
 #ifndef BT_NO_PROFILE
@@ -192,16 +202,19 @@ public:
 	}
 };
 
-
 #define	BT_PROFILE( name )			CProfileSample __profile( name )
 
 #else
 
 #define	BT_PROFILE( name )
 
+
 #endif //#ifndef BT_NO_PROFILE
 
-
+extern "C"
+{
+	EXPORT void DumpProfilingData();
+}
 
 #endif //BT_QUICK_PROF_H
 

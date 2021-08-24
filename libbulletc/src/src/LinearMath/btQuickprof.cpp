@@ -16,6 +16,17 @@
 #include "btQuickprof.h"
 
 #ifndef BT_NO_PROFILE
+void DumpProfilingData()
+{
+	CProfileManager::dumpAll();
+}
+#else
+void DumpProfilingData()
+{
+}
+#endif
+
+#ifndef BT_NO_PROFILE
 
 
 static btClock gProfileClock;
@@ -564,6 +575,7 @@ void	CProfileManager::dumpRecursive(CProfileIterator* profileIterator, int spaci
 
 void	CProfileManager::dumpAll()
 {
+	freopen("debug.txt", "a", stdout);
 	CProfileIterator* profileIterator = 0;
 	profileIterator = CProfileManager::Get_Iterator();
 
