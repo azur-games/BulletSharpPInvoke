@@ -48,3 +48,6 @@ RUN apt-get -y install gcc-mingw-w64-x86-64
 
 #g++
 RUN apt-get -y install g++
+
+#32bit tooling for gcc/g++
+RUN apt-get -y install gcc-multilib g++-multilib
