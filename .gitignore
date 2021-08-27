@@ -1,3 +1,7 @@
+[Bb]uild/
+libbulletc/libbulletc-Linux/libbulletc/build_32/
+libbulletc/libbulletc-Linux/libbulletc/build_64/
+
 libbulletc/libbulletc-Android/obj/
 libbulletc/libbulletc-Android/libs/
 BulletSharpPInvoke/obj/

@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  bullet_build:
+    hostname: bullet_build
+    container_name: bullet_build
+    image: bullet_build
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/src
+      - ./buildNative.sh:/buildNative.sh
+    command: /buildNative.sh
