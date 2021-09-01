@@ -36,10 +36,12 @@ namespace BulletSharp
 	    private Vector3 _steppingInvNormal;
 	    private Vector3 _groundNormal;
 	    private readonly FindGroundAndSteps _findGroundAndSteps;
+	    private Vector3 _gravity;
 
 	    public DynamicCharacterController(CollisionWorld collisionWorld, RigidBody body, 
 		    CapsuleShape shape, short staticRaycastGroup, short staticRaycastMask)
 	    {
+		    _gravity = body.Gravity;
 		    _findGroundAndSteps = new FindGroundAndSteps(this, collisionWorld, staticRaycastGroup, staticRaycastMask);
 		    RigidBody = body;
 		    CapsuleRadius = shape.Radius;
@@ -72,11 +74,11 @@ namespace BulletSharp
 		    {
 			    /* Avoid going down on ramps, if already on ground, and clearGravity()
 			    is not enough */
-			    RigidBody.Flags = RigidBodyFlags.DisableWorldGravity;
+			    RigidBody.Gravity = Vector3.Zero;
 		    }
 		    else
 		    {
-			    RigidBody.Flags = RigidBodyFlags.None;
+			    RigidBody.Gravity = _gravity;
 		    }
 	    }
 
@@ -101,6 +103,7 @@ namespace BulletSharp
 		    _targetSpeed = new Vector3(0, 0, 0);
 		    _isJumping = false;
 		    OnGround = false;
+		    RigidBody.Gravity = _gravity;
 		    CancelStep();
 	    }
 
