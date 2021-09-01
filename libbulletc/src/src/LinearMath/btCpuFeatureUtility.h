@@ -16,7 +16,7 @@
 #define ARM_NEON_GCC_COMPATIBILITY  1
 #include <arm_neon.h>
 #ifdef ANDROID
-  #include "/android/ndk/23.0.7599858/sources/android/cpufeatures/cpu-features.h"
+  #include "cpu-features.h"
 #endif
 #ifdef __APPLE__
   #include <sys/types.h>
