@@ -406,8 +406,8 @@ namespace BulletSharpTest
     class CustomRayCallback : ClosestRayResultCallback
     {
         public CustomRayCallback(ref Vector3 rayFrom, ref Vector3 rayTo)
-            : base(ref rayFrom, ref rayTo)
         {
+            Setup(ref rayFrom, ref rayTo);
         }
 
         public override float AddSingleResult(LocalRayResult rayResult, bool normalInWorldSpace)
@@ -460,8 +460,8 @@ namespace BulletSharpTest
         public bool Success { get; private set; }
 
         public TriangleMeshRayCastCallback(ref Vector3 from, ref Vector3 to)
-            : base(ref from, ref to)
         {
+            Setup(ref from, ref to);
         }
 
         public override float AddSingleResult(LocalRayResult rayResult, bool normalInWorldSpace)

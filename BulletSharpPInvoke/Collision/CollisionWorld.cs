@@ -84,10 +84,10 @@ namespace BulletSharp
 
 	public class ClosestRayResultCallback : RayResultCallback
 	{
-        public ClosestRayResultCallback(ref Vector3 rayFromWorld, ref Vector3 rayToWorld)
+		public void Setup(ref Vector3 rayFromWorld, ref Vector3 rayToWorld)
 		{
-            RayFromWorld = rayFromWorld;
-            RayToWorld = rayToWorld;
+			RayFromWorld = rayFromWorld;
+			RayToWorld = rayToWorld;
 		}
 
         public override float AddSingleResult(LocalRayResult rayResult, bool normalInWorldSpace)
