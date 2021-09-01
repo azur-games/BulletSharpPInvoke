@@ -827,7 +827,7 @@ long _mindot_large( const float *vv, const float *vec, unsigned long count, floa
 #include <sys/types.h>
 
 #ifdef ANDROID
-  #include "NDK/sources/android/cpufeatures/cpu-features.h"
+  #include "cpu-features.h"
 #endif
 
 #ifdef __APPLE__
