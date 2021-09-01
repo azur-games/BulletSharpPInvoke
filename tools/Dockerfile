@@ -9,6 +9,10 @@ ENV ANDROID_HOME /android
 ENV PATH "${ANDROID_HOME}/cmdline-tools/tools/bin/:${PATH}"
 ENV PATH "${ANDROID_HOME}/emulator/:${PATH}"
 ENV PATH "${ANDROID_HOME}/platform-tools/:${PATH}"
+ENV PATH "${ANDROID_HOME}/ndk/23.0.7599858/:${PATH}"
+
+# required for ndk-build
+ENV NDK_PATH "/android/ndk/23.0.7599858"
 
 #wget
 RUN apt-get update \

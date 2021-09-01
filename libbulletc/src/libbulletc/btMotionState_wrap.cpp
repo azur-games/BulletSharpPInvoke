@@ -2,6 +2,8 @@
 
 #include "conversion.h"
 #include "btMotionState_wrap.h"
+// https://stackoverflow.com/questions/3156778/no-matching-function-for-call-to-operator-new
+#include <new>
 
 btMotionStateWrapper::btMotionStateWrapper(pMotionState_GetWorldTransform getWorldTransformCallback, pMotionState_SetWorldTransform setWorldTransformCallback, void* managedMotionStatePtr)
 {
