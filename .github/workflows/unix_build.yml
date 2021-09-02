@@ -12,5 +12,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Upload artifacts
+          name: UnixBinaries
           path: ./build/**/*.so
