@@ -1,0 +1,16 @@
+name: Unix build
+on:
+  push:
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: docker build -f ./tools/Dockerfile -t bullet_build . && docker-compose -f "./tools/docker-compose.yml" up --build
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Upload artifacts
+          path: ./build/**/*.so

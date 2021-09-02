@@ -1,0 +1,29 @@
+name: Windows build
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.3
+
+      - name: Install Windows 8.1 SDK
+        shell: powershell
+        run: |
+          Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
+          Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
+      - name: Run MSBuild
+        run: msbuild.exe ./libbulletc/libbulletc-Windows/libbulletc/libbulletc.vcxproj /p:configuration=release /p:platform=x64
+
+      - name: Upload native libbulletc
+        uses: actions/upload-artifact@v2
+        with:
+          name: Engine Dll(x64)
+          if-no-files-found: error
+          path: ./libbulletc/libbulletc-Windows/libbulletc/x64/release/libbulletc.dll
