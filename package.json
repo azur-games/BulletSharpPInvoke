@@ -1,0 +1,10 @@
+{
+  "name": "com.phong13.bulletsharp",
+  "displayName": "BulletSharpUnity3d",
+  "description": "UPM package implementing Bullet for Unity.",
+  "version": "0.9.9-patch.12+ums.4211c950",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azur-games/BulletUnity.git"
+  }
+}
