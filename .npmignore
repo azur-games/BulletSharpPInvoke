@@ -1,0 +1,19 @@
+# Ignores
+.npmignore
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# C Sharp solution-specific
+**/bin
+**/obj
+**/*.sln
+
+# Docs
+PULL_REQUEST_TEMPLATE.md
+
+# Bullet-specific
+BulletSharpPInvoke/demos/
+

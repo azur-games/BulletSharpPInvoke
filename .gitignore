@@ -8,3 +8,9 @@ BulletSharpPInvoke/obj/
 BulletSharpPInvoke/bin/
 .idea
 libbulletc/libbulletc-Windows/
+
+# Package-specific
+/bin/
+/obj/
+bin.meta
+obj.meta
