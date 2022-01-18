@@ -24,12 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>Libs~\UnityEngine.CoreModule.dll\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Extensions" />
   </ItemGroup>
 	
