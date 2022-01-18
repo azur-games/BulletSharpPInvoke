@@ -14,3 +14,4 @@ libbulletc/libbulletc-Windows/
 /obj/
 bin.meta
 obj.meta
+BulletSharpPInvoke/output~/
