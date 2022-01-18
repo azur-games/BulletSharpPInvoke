@@ -3,6 +3,7 @@
 
 # Git
 .git/
+.github/
 .gitignore
 .gitattributes
 
@@ -15,5 +16,9 @@
 PULL_REQUEST_TEMPLATE.md
 
 # Bullet-specific
-BulletSharpPInvoke/demos/
-
+BulletSharpGen/
+libbulletc/
+tools/
+BulletSharpPInvoke/.test
+BulletSharpPInvoke/.demos/
+BulletSharpPInvoke/.Extensions/BulletSharp.OpenTK/

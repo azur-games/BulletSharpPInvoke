@@ -9,23 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="demos\**" />
-    <Compile Remove="Extensions\BulletSharp.OpenTK\**" />
+    <Compile Remove=".demos\**" />
+    <Compile Remove="Extensions\.BulletSharp.OpenTK\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="demos\**" />
-    <EmbeddedResource Remove="Extensions\BulletSharp.OpenTK\**" />
+    <EmbeddedResource Remove=".demos\**" />
+    <EmbeddedResource Remove="Extensions\.BulletSharp.OpenTK\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="demos\**" />
-    <None Remove="Extensions\BulletSharp.OpenTK\**" />
+    <None Remove=".demos\**" />
+    <None Remove="Extensions\.BulletSharp.OpenTK\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>Libs~\UnityEngine.CoreModule.dll\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
