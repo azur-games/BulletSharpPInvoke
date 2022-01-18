@@ -32,5 +32,11 @@
   <ItemGroup>
     <Folder Include="Extensions" />
   </ItemGroup>
+	
+	  <!-- Remove all Unity-specific -->
+  <ItemGroup>
+    <None Remove="**\*.meta" />
+    <None Remove="**\*.asmdef" />
+  </ItemGroup>
 
 </Project>
