@@ -27,10 +27,20 @@
     <Folder Include="Extensions" />
   </ItemGroup>
 	
-	  <!-- Remove all Unity-specific -->
+	<!-- Remove all Unity-specific -->
   <ItemGroup>
     <None Remove="**\*.meta" />
     <None Remove="**\*.asmdef" />
+  </ItemGroup>
+
+  <!-- Remove all possible compiled trash -->
+  <ItemGroup>
+    <None Remove=".\obj\**\*.*" />
+    <Content Remove=".\obj\**\*.*" />
+    <Compile Remove=".\obj\**\*.*" />
+    <None Remove=".\bin\**\*.*" />
+    <Content Remove=".\bin\**\*.*" />
+    <Compile Remove=".\bin\**\*.*" />
   </ItemGroup>
 
 </Project>
