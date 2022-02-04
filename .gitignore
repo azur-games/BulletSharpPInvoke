@@ -8,3 +8,4 @@ BulletSharpPInvoke/obj/
 BulletSharpPInvoke/bin/
 .idea
 libbulletc/libbulletc-Windows/
+*.bak
