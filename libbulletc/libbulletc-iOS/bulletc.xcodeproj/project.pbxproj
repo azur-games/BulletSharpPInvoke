@@ -3,11 +3,169 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E017E661C65C37100393DFF /* libbulletc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E017E5A1C65C37100393DFF /* libbulletc.a */; };
+		784445ED27B1669200C7E274 /* btTriangleMeshShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA531CC35080009783EB /* btTriangleMeshShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445EE27B166A400C7E274 /* hacdHACD_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA6D1CC35081009783EB /* hacdHACD_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445EF27B166AD00C7E274 /* btActionInterface_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9351CC35080009783EB /* btActionInterface_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F027B166AF00C7E274 /* btAlignedObjectArray_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9371CC35080009783EB /* btAlignedObjectArray_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F127B166B200C7E274 /* btAxisSweep3_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9391CC35080009783EB /* btAxisSweep3_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F227B166B500C7E274 /* btBox2dBox2dCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E93B1CC35080009783EB /* btBox2dBox2dCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F327B166B800C7E274 /* btBox2dShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E93D1CC35080009783EB /* btBox2dShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F427B166BA00C7E274 /* btBoxBoxCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E93F1CC35080009783EB /* btBoxBoxCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F527B166BC00C7E274 /* btBoxBoxDetector_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9411CC35080009783EB /* btBoxBoxDetector_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F627B166BE00C7E274 /* btBoxCollision_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9431CC35080009783EB /* btBoxCollision_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F727B166C000C7E274 /* btBoxShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9451CC35080009783EB /* btBoxShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F827B166C100C7E274 /* btBroadphaseInterface_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9471CC35080009783EB /* btBroadphaseInterface_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445F927B166C300C7E274 /* btBroadphaseProxy_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9491CC35080009783EB /* btBroadphaseProxy_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445FA27B166C500C7E274 /* btBulletFile_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E94B1CC35080009783EB /* btBulletFile_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445FB27B166C800C7E274 /* btBulletWorldImporter_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E94D1CC35080009783EB /* btBulletWorldImporter_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445FC27B166D000C7E274 /* btBulletXmlWorldImporter_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E94F1CC35080009783EB /* btBulletXmlWorldImporter_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445FD27B166D400C7E274 /* btBvhTriangleMeshShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9511CC35080009783EB /* btBvhTriangleMeshShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445FE27B166D600C7E274 /* btCapsuleShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9531CC35080009783EB /* btCapsuleShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		784445FF27B166DB00C7E274 /* btCharacterControllerInterface_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9551CC35080009783EB /* btCharacterControllerInterface_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460027B166DF00C7E274 /* btCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9571CC35080009783EB /* btCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460127B166E100C7E274 /* btCollisionConfiguration_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9591CC35080009783EB /* btCollisionConfiguration_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460227B166E300C7E274 /* btCollisionCreateFunc_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E95B1CC35080009783EB /* btCollisionCreateFunc_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460327B166E500C7E274 /* btCollisionDispatcher_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E95D1CC35080009783EB /* btCollisionDispatcher_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460427B166E800C7E274 /* btCollisionObject_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E95F1CC35080009783EB /* btCollisionObject_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460527B166EA00C7E274 /* btCollisionObjectWrapper_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9611CC35080009783EB /* btCollisionObjectWrapper_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460627B166EB00C7E274 /* btCollisionShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9631CC35080009783EB /* btCollisionShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460727B166EF00C7E274 /* btCompoundCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9671CC35080009783EB /* btCompoundCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460827B166F100C7E274 /* btCompoundCompoundCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9691CC35080009783EB /* btCompoundCompoundCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460927B166F200C7E274 /* btCompoundFromGimpact_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E96B1CC35080009783EB /* btCompoundFromGimpact_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460A27B166F400C7E274 /* btCompoundShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E96D1CC35080009783EB /* btCompoundShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460B27B166F500C7E274 /* btConcaveShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E96F1CC35080009783EB /* btConcaveShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460C27B166F700C7E274 /* btConeShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9711CC35080009783EB /* btConeShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460D27B166F800C7E274 /* btConeTwistConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9731CC35080009783EB /* btConeTwistConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460E27B166FA00C7E274 /* btConstraintSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9751CC35080009783EB /* btConstraintSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844460F27B166FB00C7E274 /* btContactConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9771CC35080009783EB /* btContactConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461027B166FD00C7E274 /* btContactSolverInfo_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9791CC35080009783EB /* btContactSolverInfo_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461127B166FE00C7E274 /* btContinuousConvexCollision_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E97B1CC35080009783EB /* btContinuousConvexCollision_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461227B1670000C7E274 /* btConvex2dConvex2dAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E97D1CC35080009783EB /* btConvex2dConvex2dAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461327B1670300C7E274 /* btConvex2dShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E97F1CC35080009783EB /* btConvex2dShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461427B1670400C7E274 /* btConvexCast_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9811CC35080009783EB /* btConvexCast_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461527B1670600C7E274 /* btConvexConcaveCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9831CC35080009783EB /* btConvexConcaveCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461627B1670700C7E274 /* btConvexConvexAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9851CC35080009783EB /* btConvexConvexAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461727B1670800C7E274 /* btConvexHullShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9871CC35080009783EB /* btConvexHullShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461827B1670A00C7E274 /* btConvexInternalShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9891CC35080009783EB /* btConvexInternalShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461927B1670B00C7E274 /* btConvexPenetrationDepthSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E98B1CC35080009783EB /* btConvexPenetrationDepthSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461A27B1670D00C7E274 /* btConvexPlaneCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E98D1CC35080009783EB /* btConvexPlaneCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461B27B1670E00C7E274 /* btConvexPointCloudShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E98F1CC35080009783EB /* btConvexPointCloudShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461C27B1671000C7E274 /* btConvexPolyhedron_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9911CC35080009783EB /* btConvexPolyhedron_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461D27B1671100C7E274 /* btConvexShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9931CC35080009783EB /* btConvexShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461E27B1671300C7E274 /* btConvexTriangleMeshShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9951CC35080009783EB /* btConvexTriangleMeshShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844461F27B1671500C7E274 /* btCpuFeatureUtility_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9971CC35080009783EB /* btCpuFeatureUtility_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462027B1671700C7E274 /* btCylinderShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9991CC35080009783EB /* btCylinderShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462127B1671800C7E274 /* btDantzigSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E99B1CC35080009783EB /* btDantzigSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462227B1671A00C7E274 /* btDbvt_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E99D1CC35080009783EB /* btDbvt_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462327B1671B00C7E274 /* btDbvtBroadphase_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E99F1CC35080009783EB /* btDbvtBroadphase_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462427B1671D00C7E274 /* btDefaultCollisionConfiguration_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9A11CC35080009783EB /* btDefaultCollisionConfiguration_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462527B1671E00C7E274 /* btDefaultMotionState_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9A31CC35080009783EB /* btDefaultMotionState_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462627B1672000C7E274 /* btDefaultSoftBodySolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9A51CC35080009783EB /* btDefaultSoftBodySolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462727B1672200C7E274 /* btDiscreteCollisionDetectorInterface_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9A71CC35080009783EB /* btDiscreteCollisionDetectorInterface_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462827B1672300C7E274 /* btDiscreteDynamicsWorld_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9A91CC35080009783EB /* btDiscreteDynamicsWorld_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462927B1672500C7E274 /* btDispatcher_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9AB1CC35080009783EB /* btDispatcher_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462A27B1672800C7E274 /* btDynamicsWorld_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9AD1CC35080009783EB /* btDynamicsWorld_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462B27B1672A00C7E274 /* btEmptyCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9AF1CC35080009783EB /* btEmptyCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462C27B1672B00C7E274 /* btEmptyShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9B11CC35080009783EB /* btEmptyShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462D27B1672D00C7E274 /* btFixedConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9B31CC35080009783EB /* btFixedConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462E27B1672F00C7E274 /* btGearConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9B51CC35080009783EB /* btGearConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844462F27B1673000C7E274 /* btGeneric6DofConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9B71CC35080009783EB /* btGeneric6DofConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463027B1673100C7E274 /* btGeneric6DofSpring2Constraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9B91CC35080009783EB /* btGeneric6DofSpring2Constraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463127B1673200C7E274 /* btGeneric6DofSpringConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9BB1CC35080009783EB /* btGeneric6DofSpringConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463227B1673400C7E274 /* btGeometryUtil_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9BD1CC35080009783EB /* btGeometryUtil_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463327B1673500C7E274 /* btGhostObject_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9BF1CC35080009783EB /* btGhostObject_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463427B1673600C7E274 /* btGImpactBvh_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9C11CC35080009783EB /* btGImpactBvh_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463527B1673800C7E274 /* btGImpactCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9C31CC35080009783EB /* btGImpactCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463627B1673900C7E274 /* btGImpactQuantizedBvh_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9C51CC35080009783EB /* btGImpactQuantizedBvh_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463727B1673B00C7E274 /* btGImpactShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9C71CC35080009783EB /* btGImpactShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463827B1673D00C7E274 /* btGjkConvexCast_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9C91CC35080009783EB /* btGjkConvexCast_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463927B1673F00C7E274 /* btGjkEpaPenetrationDepthSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9CB1CC35080009783EB /* btGjkEpaPenetrationDepthSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463A27B1674200C7E274 /* btGjkPairDetector_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9CD1CC35080009783EB /* btGjkPairDetector_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463B27B1674300C7E274 /* btHeightfieldTerrainShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9CF1CC35080009783EB /* btHeightfieldTerrainShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463C27B1674400C7E274 /* btHinge2Constraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9D11CC35080009783EB /* btHinge2Constraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463D27B1674600C7E274 /* btHingeConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9D31CC35080009783EB /* btHingeConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463E27B1674700C7E274 /* btIDebugDraw_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9D51CC35080009783EB /* btIDebugDraw_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844463F27B1674800C7E274 /* btKinematicCharacterController_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9D71CC35080009783EB /* btKinematicCharacterController_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464027B1674A00C7E274 /* btLemkeSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9D91CC35080009783EB /* btLemkeSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464127B1674B00C7E274 /* btManifoldPoint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9DB1CC35080009783EB /* btManifoldPoint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464227B1674D00C7E274 /* btManifoldResult_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9DD1CC35080009783EB /* btManifoldResult_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464327B1674E00C7E274 /* btMinkowskiPenetrationDepthSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9DF1CC35080009783EB /* btMinkowskiPenetrationDepthSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464427B1675000C7E274 /* btMinkowskiSumShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9E11CC35080009783EB /* btMinkowskiSumShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464527B1675100C7E274 /* btMLCPSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9E31CC35080009783EB /* btMLCPSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464627B1675300C7E274 /* btMLCPSolverInterface_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9E51CC35080009783EB /* btMLCPSolverInterface_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464727B1675400C7E274 /* btMotionState_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9E71CC35080009783EB /* btMotionState_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464827B1675800C7E274 /* btMultiBody_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9E91CC35080009783EB /* btMultiBody_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464927B1675A00C7E274 /* btMultiBodyConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9EB1CC35080009783EB /* btMultiBodyConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464A27B1675D00C7E274 /* btMultiBodyConstraintSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9ED1CC35080009783EB /* btMultiBodyConstraintSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464B27B1675E00C7E274 /* btMultiBodyDynamicsWorld_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9EF1CC35080009783EB /* btMultiBodyDynamicsWorld_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464C27B1675F00C7E274 /* btMultiBodyJointLimitConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9F11CC35080009783EB /* btMultiBodyJointLimitConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464D27B1676100C7E274 /* btMultiBodyJointMotor_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9F31CC35080009783EB /* btMultiBodyJointMotor_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464E27B1676200C7E274 /* btMultiBodyLink_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9F51CC35080009783EB /* btMultiBodyLink_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844464F27B1676300C7E274 /* btMultiBodyLinkCollider_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9F71CC35080009783EB /* btMultiBodyLinkCollider_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465027B1676500C7E274 /* btMultiBodyPoint2Point_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9F91CC35080009783EB /* btMultiBodyPoint2Point_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465127B1676600C7E274 /* btMultiBodySolverConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9FB1CC35080009783EB /* btMultiBodySolverConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465227B1676800C7E274 /* btMultimaterialTriangleMeshShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9FD1CC35080009783EB /* btMultimaterialTriangleMeshShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465327B1676900C7E274 /* btMultiSphereShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60E9FF1CC35080009783EB /* btMultiSphereShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465427B1676B00C7E274 /* btNNCGConstraintSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA011CC35080009783EB /* btNNCGConstraintSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465527B1676D00C7E274 /* btOptimizedBvh_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA031CC35080009783EB /* btOptimizedBvh_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465627B1676E00C7E274 /* btOverlappingPairCache_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA051CC35080009783EB /* btOverlappingPairCache_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465727B1676F00C7E274 /* btOverlappingPairCallback_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA071CC35080009783EB /* btOverlappingPairCallback_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465827B1677100C7E274 /* btPersistentManifold_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA091CC35080009783EB /* btPersistentManifold_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465927B1677200C7E274 /* btPoint2PointConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA0B1CC35080009783EB /* btPoint2PointConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465A27B1677600C7E274 /* btPointCollector_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA0D1CC35080009783EB /* btPointCollector_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465B27B1677700C7E274 /* btPolarDecomposition_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA0F1CC35080009783EB /* btPolarDecomposition_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465C27B1677900C7E274 /* btPolyhedralConvexShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA111CC35080009783EB /* btPolyhedralConvexShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465D27B1677A00C7E274 /* btQuantizedBvh_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA131CC35080009783EB /* btQuantizedBvh_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465E27B1677C00C7E274 /* btRaycastVehicle_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA151CC35080009783EB /* btRaycastVehicle_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844465F27B1677D00C7E274 /* btRigidBody_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA171CC35080009783EB /* btRigidBody_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466027B1677E00C7E274 /* btScaledBvhTriangleMeshShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA191CC35080009783EB /* btScaledBvhTriangleMeshShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466127B1678000C7E274 /* btSequentialImpulseConstraintSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA1B1CC35080009783EB /* btSequentialImpulseConstraintSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466227B1678100C7E274 /* btSerializer_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA1D1CC35080009783EB /* btSerializer_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466327B1678300C7E274 /* btShapeHull_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA1F1CC35080009783EB /* btShapeHull_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466427B1678400C7E274 /* btSimulationIslandManager_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA211CC35080009783EB /* btSimulationIslandManager_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466527B1678500C7E274 /* btSliderConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA231CC35080009783EB /* btSliderConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466627B1678700C7E274 /* btSoftBody_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA251CC35080009783EB /* btSoftBody_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466727B1678900C7E274 /* btSoftBodyConcaveCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA271CC35080009783EB /* btSoftBodyConcaveCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466827B1678A00C7E274 /* btSoftBodyHelpers_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA291CC35080009783EB /* btSoftBodyHelpers_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466927B1678C00C7E274 /* btSoftBodyRigidBodyCollisionConfiguration_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA2B1CC35080009783EB /* btSoftBodyRigidBodyCollisionConfiguration_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466A27B1678D00C7E274 /* btSoftBodySolvers_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA2D1CC35080009783EB /* btSoftBodySolvers_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466B27B1678E00C7E274 /* btSoftRigidCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA2F1CC35080009783EB /* btSoftRigidCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466C27B1679000C7E274 /* btSoftRigidDynamicsWorld_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA311CC35080009783EB /* btSoftRigidDynamicsWorld_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466D27B1679100C7E274 /* btSoftSoftCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA331CC35080009783EB /* btSoftSoftCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466E27B1679600C7E274 /* btSparseSdf3_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA351CC35080009783EB /* btSparseSdf3_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844466F27B1679700C7E274 /* btSphereBoxCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA371CC35080009783EB /* btSphereBoxCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467027B1679800C7E274 /* btSphereShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA391CC35080009783EB /* btSphereShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467127B1679900C7E274 /* btSphereSphereCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA3B1CC35080009783EB /* btSphereSphereCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467227B1679B00C7E274 /* btSphereTriangleCollisionAlgorithm_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA3D1CC35080009783EB /* btSphereTriangleCollisionAlgorithm_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467327B1679D00C7E274 /* btStaticPlaneShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA3F1CC35080009783EB /* btStaticPlaneShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467427B1679E00C7E274 /* btStridingMeshInterface_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA411CC35080009783EB /* btStridingMeshInterface_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467527B1679F00C7E274 /* btTetrahedronShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA431CC35080009783EB /* btTetrahedronShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467627B167A100C7E274 /* btTransformUtil_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA451CC35080009783EB /* btTransformUtil_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467727B167A200C7E274 /* btTriangleBuffer_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA471CC35080009783EB /* btTriangleBuffer_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467827B167A400C7E274 /* btTriangleCallback_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA491CC35080009783EB /* btTriangleCallback_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467927B167A500C7E274 /* btTriangleIndexVertexArray_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA4B1CC35080009783EB /* btTriangleIndexVertexArray_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467A27B167A600C7E274 /* btTriangleIndexVertexMaterialArray_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA4D1CC35080009783EB /* btTriangleIndexVertexMaterialArray_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467B27B167A700C7E274 /* btTriangleInfoMap_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA4F1CC35080009783EB /* btTriangleInfoMap_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467C27B167A900C7E274 /* btTriangleMesh_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA511CC35080009783EB /* btTriangleMesh_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467D27B167AC00C7E274 /* btTriangleShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA551CC35080009783EB /* btTriangleShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467E27B167AD00C7E274 /* btTriangleShapeEx_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA571CC35080009783EB /* btTriangleShapeEx_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844467F27B167AE00C7E274 /* btTypedConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA591CC35080009783EB /* btTypedConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468027B167B000C7E274 /* btUniformScalingShape_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA5B1CC35081009783EB /* btUniformScalingShape_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468127B167B200C7E274 /* btUnionFind_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA5D1CC35081009783EB /* btUnionFind_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468227B167B500C7E274 /* btUniversalConstraint_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA5F1CC35081009783EB /* btUniversalConstraint_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468327B167B600C7E274 /* btVehicleRaycaster_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA611CC35081009783EB /* btVehicleRaycaster_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468427B167B700C7E274 /* btVoronoiSimplexSolver_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA631CC35081009783EB /* btVoronoiSimplexSolver_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468527B167B900C7E274 /* btWheelInfo_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA651CC35081009783EB /* btWheelInfo_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468627B167BA00C7E274 /* btWorldImporter_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA671CC35081009783EB /* btWorldImporter_wrap.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468727B167BB00C7E274 /* bulletc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA681CC35081009783EB /* bulletc.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468827B167BD00C7E274 /* collections.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA6A1CC35081009783EB /* collections.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468927B167BE00C7E274 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA6B1CC35081009783EB /* conversion.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		7844468A27B167C100C7E274 /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60EA6E1CC35081009783EB /* main.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		9E017E661C65C37100393DFF /* libbulletc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E017E5A1C65C37100393DFF /* libbulletc.a */; platformFilter = ios; };
 		9E60E43A1CC34D97009783EB /* b3AlignedAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E60E1BF1CC34D96009783EB /* b3AlignedAllocator.cpp */; };
 		9E60E43B1CC34D97009783EB /* b3Logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E60E1C51CC34D96009783EB /* b3Logging.cpp */; };
 		9E60E43C1CC34D97009783EB /* b3Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E60E1D11CC34D96009783EB /* b3Vector3.cpp */; };
@@ -367,18 +525,6 @@
 			remoteInfo = libbulletc;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9E017E581C65C37100393DFF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9E017E5A1C65C37100393DFF /* libbulletc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbulletc.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2393,14 +2539,182 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		784445E727B1652A00C7E274 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				784445F027B166AF00C7E274 /* btAlignedObjectArray_wrap.h in Headers */,
+				784445F127B166B200C7E274 /* btAxisSweep3_wrap.h in Headers */,
+				784445F227B166B500C7E274 /* btBox2dBox2dCollisionAlgorithm_wrap.h in Headers */,
+				784445F427B166BA00C7E274 /* btBoxBoxCollisionAlgorithm_wrap.h in Headers */,
+				784445F627B166BE00C7E274 /* btBoxCollision_wrap.h in Headers */,
+				7844463B27B1674300C7E274 /* btHeightfieldTerrainShape_wrap.h in Headers */,
+				7844467227B1679B00C7E274 /* btSphereTriangleCollisionAlgorithm_wrap.h in Headers */,
+				7844467127B1679900C7E274 /* btSphereSphereCollisionAlgorithm_wrap.h in Headers */,
+				7844465A27B1677600C7E274 /* btPointCollector_wrap.h in Headers */,
+				7844467527B1679F00C7E274 /* btTetrahedronShape_wrap.h in Headers */,
+				7844467327B1679D00C7E274 /* btStaticPlaneShape_wrap.h in Headers */,
+				7844467027B1679800C7E274 /* btSphereShape_wrap.h in Headers */,
+				7844466F27B1679700C7E274 /* btSphereBoxCollisionAlgorithm_wrap.h in Headers */,
+				7844467727B167A200C7E274 /* btTriangleBuffer_wrap.h in Headers */,
+				7844468227B167B500C7E274 /* btUniversalConstraint_wrap.h in Headers */,
+				7844467427B1679E00C7E274 /* btStridingMeshInterface_wrap.h in Headers */,
+				7844468327B167B600C7E274 /* btVehicleRaycaster_wrap.h in Headers */,
+				7844468427B167B700C7E274 /* btVoronoiSimplexSolver_wrap.h in Headers */,
+				7844465B27B1677700C7E274 /* btPolarDecomposition_wrap.h in Headers */,
+				7844468527B167B900C7E274 /* btWheelInfo_wrap.h in Headers */,
+				7844468627B167BA00C7E274 /* btWorldImporter_wrap.h in Headers */,
+				7844467A27B167A600C7E274 /* btTriangleIndexVertexMaterialArray_wrap.h in Headers */,
+				7844468727B167BB00C7E274 /* bulletc.h in Headers */,
+				7844468827B167BD00C7E274 /* collections.h in Headers */,
+				7844467927B167A500C7E274 /* btTriangleIndexVertexArray_wrap.h in Headers */,
+				784445EE27B166A400C7E274 /* hacdHACD_wrap.h in Headers */,
+				7844468A27B167C100C7E274 /* main.h in Headers */,
+				7844468927B167BE00C7E274 /* conversion.h in Headers */,
+				7844467827B167A400C7E274 /* btTriangleCallback_wrap.h in Headers */,
+				7844467B27B167A700C7E274 /* btTriangleInfoMap_wrap.h in Headers */,
+				7844467C27B167A900C7E274 /* btTriangleMesh_wrap.h in Headers */,
+				7844467627B167A100C7E274 /* btTransformUtil_wrap.h in Headers */,
+				7844466E27B1679600C7E274 /* btSparseSdf3_wrap.h in Headers */,
+				7844467D27B167AC00C7E274 /* btTriangleShape_wrap.h in Headers */,
+				784445ED27B1669200C7E274 /* btTriangleMeshShape_wrap.h in Headers */,
+				7844465F27B1677D00C7E274 /* btRigidBody_wrap.h in Headers */,
+				7844467F27B167AE00C7E274 /* btTypedConstraint_wrap.h in Headers */,
+				7844468027B167B000C7E274 /* btUniformScalingShape_wrap.h in Headers */,
+				7844467E27B167AD00C7E274 /* btTriangleShapeEx_wrap.h in Headers */,
+				7844468127B167B200C7E274 /* btUnionFind_wrap.h in Headers */,
+				7844466027B1677E00C7E274 /* btScaledBvhTriangleMeshShape_wrap.h in Headers */,
+				7844465C27B1677900C7E274 /* btPolyhedralConvexShape_wrap.h in Headers */,
+				7844466127B1678000C7E274 /* btSequentialImpulseConstraintSolver_wrap.h in Headers */,
+				7844465E27B1677C00C7E274 /* btRaycastVehicle_wrap.h in Headers */,
+				7844464B27B1675E00C7E274 /* btMultiBodyDynamicsWorld_wrap.h in Headers */,
+				7844464C27B1675F00C7E274 /* btMultiBodyJointLimitConstraint_wrap.h in Headers */,
+				7844466227B1678100C7E274 /* btSerializer_wrap.h in Headers */,
+				7844465D27B1677A00C7E274 /* btQuantizedBvh_wrap.h in Headers */,
+				7844466327B1678300C7E274 /* btShapeHull_wrap.h in Headers */,
+				7844466527B1678500C7E274 /* btSliderConstraint_wrap.h in Headers */,
+				7844466427B1678400C7E274 /* btSimulationIslandManager_wrap.h in Headers */,
+				7844466727B1678900C7E274 /* btSoftBodyConcaveCollisionAlgorithm_wrap.h in Headers */,
+				7844466827B1678A00C7E274 /* btSoftBodyHelpers_wrap.h in Headers */,
+				7844466627B1678700C7E274 /* btSoftBody_wrap.h in Headers */,
+				7844463C27B1674400C7E274 /* btHinge2Constraint_wrap.h in Headers */,
+				7844464D27B1676100C7E274 /* btMultiBodyJointMotor_wrap.h in Headers */,
+				7844466927B1678C00C7E274 /* btSoftBodyRigidBodyCollisionConfiguration_wrap.h in Headers */,
+				7844466A27B1678D00C7E274 /* btSoftBodySolvers_wrap.h in Headers */,
+				7844466B27B1678E00C7E274 /* btSoftRigidCollisionAlgorithm_wrap.h in Headers */,
+				7844466C27B1679000C7E274 /* btSoftRigidDynamicsWorld_wrap.h in Headers */,
+				7844466D27B1679100C7E274 /* btSoftSoftCollisionAlgorithm_wrap.h in Headers */,
+				7844464A27B1675D00C7E274 /* btMultiBodyConstraintSolver_wrap.h in Headers */,
+				784445F827B166C100C7E274 /* btBroadphaseInterface_wrap.h in Headers */,
+				7844464F27B1676300C7E274 /* btMultiBodyLinkCollider_wrap.h in Headers */,
+				7844463D27B1674600C7E274 /* btHingeConstraint_wrap.h in Headers */,
+				7844465027B1676500C7E274 /* btMultiBodyPoint2Point_wrap.h in Headers */,
+				7844464E27B1676200C7E274 /* btMultiBodyLink_wrap.h in Headers */,
+				7844463E27B1674700C7E274 /* btIDebugDraw_wrap.h in Headers */,
+				7844465127B1676600C7E274 /* btMultiBodySolverConstraint_wrap.h in Headers */,
+				784445F927B166C300C7E274 /* btBroadphaseProxy_wrap.h in Headers */,
+				7844465327B1676900C7E274 /* btMultiSphereShape_wrap.h in Headers */,
+				7844465227B1676800C7E274 /* btMultimaterialTriangleMeshShape_wrap.h in Headers */,
+				7844465427B1676B00C7E274 /* btNNCGConstraintSolver_wrap.h in Headers */,
+				7844463A27B1674200C7E274 /* btGjkPairDetector_wrap.h in Headers */,
+				7844465527B1676D00C7E274 /* btOptimizedBvh_wrap.h in Headers */,
+				7844463F27B1674800C7E274 /* btKinematicCharacterController_wrap.h in Headers */,
+				7844465627B1676E00C7E274 /* btOverlappingPairCache_wrap.h in Headers */,
+				7844462C27B1672B00C7E274 /* btEmptyShape_wrap.h in Headers */,
+				7844464027B1674A00C7E274 /* btLemkeSolver_wrap.h in Headers */,
+				7844465927B1677200C7E274 /* btPoint2PointConstraint_wrap.h in Headers */,
+				7844465727B1676F00C7E274 /* btOverlappingPairCallback_wrap.h in Headers */,
+				7844465827B1677100C7E274 /* btPersistentManifold_wrap.h in Headers */,
+				7844464227B1674D00C7E274 /* btManifoldResult_wrap.h in Headers */,
+				7844462B27B1672A00C7E274 /* btEmptyCollisionAlgorithm_wrap.h in Headers */,
+				7844464127B1674B00C7E274 /* btManifoldPoint_wrap.h in Headers */,
+				7844464327B1674E00C7E274 /* btMinkowskiPenetrationDepthSolver_wrap.h in Headers */,
+				784445FB27B166C800C7E274 /* btBulletWorldImporter_wrap.h in Headers */,
+				7844464427B1675000C7E274 /* btMinkowskiSumShape_wrap.h in Headers */,
+				7844464527B1675100C7E274 /* btMLCPSolver_wrap.h in Headers */,
+				7844464627B1675300C7E274 /* btMLCPSolverInterface_wrap.h in Headers */,
+				7844462D27B1672D00C7E274 /* btFixedConstraint_wrap.h in Headers */,
+				7844464927B1675A00C7E274 /* btMultiBodyConstraint_wrap.h in Headers */,
+				7844464727B1675400C7E274 /* btMotionState_wrap.h in Headers */,
+				7844464827B1675800C7E274 /* btMultiBody_wrap.h in Headers */,
+				784445F727B166C000C7E274 /* btBoxShape_wrap.h in Headers */,
+				7844462A27B1672800C7E274 /* btDynamicsWorld_wrap.h in Headers */,
+				7844462F27B1673000C7E274 /* btGeneric6DofConstraint_wrap.h in Headers */,
+				7844463027B1673100C7E274 /* btGeneric6DofSpring2Constraint_wrap.h in Headers */,
+				7844463127B1673200C7E274 /* btGeneric6DofSpringConstraint_wrap.h in Headers */,
+				7844462E27B1672F00C7E274 /* btGearConstraint_wrap.h in Headers */,
+				784445FC27B166D000C7E274 /* btBulletXmlWorldImporter_wrap.h in Headers */,
+				7844463227B1673400C7E274 /* btGeometryUtil_wrap.h in Headers */,
+				7844463327B1673500C7E274 /* btGhostObject_wrap.h in Headers */,
+				784445FD27B166D400C7E274 /* btBvhTriangleMeshShape_wrap.h in Headers */,
+				7844463427B1673600C7E274 /* btGImpactBvh_wrap.h in Headers */,
+				7844461327B1670300C7E274 /* btConvex2dShape_wrap.h in Headers */,
+				7844460127B166E100C7E274 /* btCollisionConfiguration_wrap.h in Headers */,
+				7844463627B1673900C7E274 /* btGImpactQuantizedBvh_wrap.h in Headers */,
+				7844463527B1673800C7E274 /* btGImpactCollisionAlgorithm_wrap.h in Headers */,
+				7844463727B1673B00C7E274 /* btGImpactShape_wrap.h in Headers */,
+				7844463827B1673D00C7E274 /* btGjkConvexCast_wrap.h in Headers */,
+				7844461427B1670400C7E274 /* btConvexCast_wrap.h in Headers */,
+				7844463927B1673F00C7E274 /* btGjkEpaPenetrationDepthSolver_wrap.h in Headers */,
+				7844461527B1670600C7E274 /* btConvexConcaveCollisionAlgorithm_wrap.h in Headers */,
+				7844462027B1671700C7E274 /* btCylinderShape_wrap.h in Headers */,
+				7844461627B1670700C7E274 /* btConvexConvexAlgorithm_wrap.h in Headers */,
+				7844462127B1671800C7E274 /* btDantzigSolver_wrap.h in Headers */,
+				7844462227B1671A00C7E274 /* btDbvt_wrap.h in Headers */,
+				7844461F27B1671500C7E274 /* btCpuFeatureUtility_wrap.h in Headers */,
+				784445FF27B166DB00C7E274 /* btCharacterControllerInterface_wrap.h in Headers */,
+				7844462327B1671B00C7E274 /* btDbvtBroadphase_wrap.h in Headers */,
+				7844462427B1671D00C7E274 /* btDefaultCollisionConfiguration_wrap.h in Headers */,
+				7844462527B1671E00C7E274 /* btDefaultMotionState_wrap.h in Headers */,
+				7844462627B1672000C7E274 /* btDefaultSoftBodySolver_wrap.h in Headers */,
+				7844462727B1672200C7E274 /* btDiscreteCollisionDetectorInterface_wrap.h in Headers */,
+				7844461727B1670800C7E274 /* btConvexHullShape_wrap.h in Headers */,
+				7844460727B166EF00C7E274 /* btCompoundCollisionAlgorithm_wrap.h in Headers */,
+				7844462827B1672300C7E274 /* btDiscreteDynamicsWorld_wrap.h in Headers */,
+				7844462927B1672500C7E274 /* btDispatcher_wrap.h in Headers */,
+				7844461827B1670A00C7E274 /* btConvexInternalShape_wrap.h in Headers */,
+				7844460827B166F100C7E274 /* btCompoundCompoundCollisionAlgorithm_wrap.h in Headers */,
+				7844460A27B166F400C7E274 /* btCompoundShape_wrap.h in Headers */,
+				7844461A27B1670D00C7E274 /* btConvexPlaneCollisionAlgorithm_wrap.h in Headers */,
+				7844461B27B1670E00C7E274 /* btConvexPointCloudShape_wrap.h in Headers */,
+				7844461927B1670B00C7E274 /* btConvexPenetrationDepthSolver_wrap.h in Headers */,
+				7844460927B166F200C7E274 /* btCompoundFromGimpact_wrap.h in Headers */,
+				7844461C27B1671000C7E274 /* btConvexPolyhedron_wrap.h in Headers */,
+				7844461D27B1671100C7E274 /* btConvexShape_wrap.h in Headers */,
+				7844461E27B1671300C7E274 /* btConvexTriangleMeshShape_wrap.h in Headers */,
+				7844460B27B166F500C7E274 /* btConcaveShape_wrap.h in Headers */,
+				7844460C27B166F700C7E274 /* btConeShape_wrap.h in Headers */,
+				7844460227B166E300C7E274 /* btCollisionCreateFunc_wrap.h in Headers */,
+				7844460327B166E500C7E274 /* btCollisionDispatcher_wrap.h in Headers */,
+				7844460D27B166F800C7E274 /* btConeTwistConstraint_wrap.h in Headers */,
+				7844460F27B166FB00C7E274 /* btContactConstraint_wrap.h in Headers */,
+				7844460E27B166FA00C7E274 /* btConstraintSolver_wrap.h in Headers */,
+				7844461127B166FE00C7E274 /* btContinuousConvexCollision_wrap.h in Headers */,
+				7844461027B166FD00C7E274 /* btContactSolverInfo_wrap.h in Headers */,
+				7844461227B1670000C7E274 /* btConvex2dConvex2dAlgorithm_wrap.h in Headers */,
+				784445FA27B166C500C7E274 /* btBulletFile_wrap.h in Headers */,
+				7844460427B166E800C7E274 /* btCollisionObject_wrap.h in Headers */,
+				7844460527B166EA00C7E274 /* btCollisionObjectWrapper_wrap.h in Headers */,
+				7844460027B166DF00C7E274 /* btCollisionAlgorithm_wrap.h in Headers */,
+				784445FE27B166D600C7E274 /* btCapsuleShape_wrap.h in Headers */,
+				7844460627B166EB00C7E274 /* btCollisionShape_wrap.h in Headers */,
+				784445F327B166B800C7E274 /* btBox2dShape_wrap.h in Headers */,
+				784445F527B166BC00C7E274 /* btBoxBoxDetector_wrap.h in Headers */,
+				784445EF27B166AD00C7E274 /* btActionInterface_wrap.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		9E017E591C65C37100393DFF /* bulletc */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E017E6E1C65C37100393DFF /* Build configuration list for PBXNativeTarget "bulletc" */;
 			buildPhases = (
+				784445E727B1652A00C7E274 /* Headers */,
 				9E017E561C65C37100393DFF /* Sources */,
 				9E017E571C65C37100393DFF /* Frameworks */,
-				9E017E581C65C37100393DFF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -2843,6 +3157,7 @@
 /* Begin PBXTargetDependency section */
 		9E017E681C65C37100393DFF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 9E017E591C65C37100393DFF /* bulletc */;
 			targetProxy = 9E017E671C65C37100393DFF /* PBXContainerItemProxy */;
 		};
@@ -2869,6 +3184,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2885,6 +3201,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2912,6 +3229,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2921,6 +3239,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -2991,7 +3310,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = libbulletcTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = bulletcTests;
 			};
 			name = Debug;
@@ -3005,7 +3328,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = libbulletcTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = bulletcTests;
 			};
 			name = Release;
