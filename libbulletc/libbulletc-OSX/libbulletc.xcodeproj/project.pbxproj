@@ -2418,6 +2418,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 9E54A0FE1C51C63000B37554;
@@ -2929,6 +2930,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = libbulletc;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -2957,6 +2959,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = libbulletc;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
