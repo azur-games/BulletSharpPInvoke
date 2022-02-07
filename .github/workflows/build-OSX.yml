@@ -1,0 +1,24 @@
+name: OSX build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build OSX version
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: 
+          ./tools/build.sh
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: OSXBinaries
+          path: ./libbulletc/libbulletc-OSX/build/Release
+          
