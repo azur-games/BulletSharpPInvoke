@@ -1,9 +1,10 @@
-﻿using BulletSharp.Math;
+﻿using System;
+using BulletSharp.Math;
 using Vector3 = BulletSharp.Math.Vector3;
 
 namespace BulletSharp
 {
-    public class DynamicCharacterController : IAction
+    public class DynamicCharacterController : IAction, IDisposable
     {
 	    public RigidBody RigidBody
 	    {
@@ -222,6 +223,11 @@ namespace BulletSharp
 		public void SetJumpSpeed(float newSpeed)
 		{
 			JumpSpeed = newSpeed;
+		}
+
+		public void Dispose()
+		{
+			_findGroundAndSteps.Dispose();
 		}
     }
 }

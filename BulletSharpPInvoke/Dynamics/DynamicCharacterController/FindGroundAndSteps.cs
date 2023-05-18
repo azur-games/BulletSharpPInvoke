@@ -112,5 +112,11 @@ namespace BulletSharp
 			frame.Transpose();
 			return new Vector3(frame.Column2.X, frame.Column2.Y, frame.Column2.Z);
 		}
+
+		public new void Dispose()
+		{
+			_resolveStepUp.Dispose();
+			base.Dispose();
+		}
     };
 }

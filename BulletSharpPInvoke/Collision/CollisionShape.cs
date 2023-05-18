@@ -10,6 +10,7 @@ namespace BulletSharp
 		internal IntPtr _native;
 		bool _preventDelete;
         bool _isDisposed;
+        private GCHandle _handle;
 
         internal static CollisionShape GetManaged(IntPtr obj)
         {
@@ -31,8 +32,8 @@ namespace BulletSharp
             }
             else
             {
-                GCHandle handle = GCHandle.Alloc(this, GCHandleType.Normal);
-                btCollisionShape_setUserPointer(native, GCHandle.ToIntPtr(handle));
+                _handle = GCHandle.Alloc(this, GCHandleType.Normal);
+                btCollisionShape_setUserPointer(native, GCHandle.ToIntPtr(_handle));
             }
 		}
 
@@ -222,9 +223,7 @@ namespace BulletSharp
 
                 if (!_preventDelete)
                 {
-                    IntPtr userPtr = btCollisionShape_getUserPointer(_native);
-                    GCHandle.FromIntPtr(userPtr).Free();
-
+					_handle.Free();
                     btCollisionShape_delete(_native);
                 }
 			}

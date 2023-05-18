@@ -16,6 +16,7 @@ namespace BulletSharp
 		internal IntPtr _native;
         IAction _actionInterface;
         DynamicsWorld _world;
+        private GCHandle _handle;
 
         [UnmanagedFunctionPointerAttribute(Native.Conv), SuppressUnmanagedCodeSecurity]
         delegate void DebugDrawUnmanagedDelegate(IntPtr iaPtrThis, IntPtr debugDrawer);
@@ -32,12 +33,12 @@ namespace BulletSharp
 
             _debugDraw = new DebugDrawUnmanagedDelegate(DebugDrawUnmanaged);
             _updateAction = new UpdateActionUnmanagedDelegate(UpdateActionUnmanaged);
-			GCHandle handle = GCHandle.Alloc(this, GCHandleType.Normal);
+			_handle = GCHandle.Alloc(this, GCHandleType.Normal);
 			//UnityEngine.Debug.Log("Created " + GCHandle.ToIntPtr(handle).ToInt64());
             _native = btActionInterfaceWrapper_new(
                 Marshal.GetFunctionPointerForDelegate(_debugDraw),
                 Marshal.GetFunctionPointerForDelegate(_updateAction),
-				GCHandle.ToIntPtr(handle));
+				GCHandle.ToIntPtr(_handle));
 			//UnityEngine.Debug.Log("Intptr" + bgActionInterface_getManagedWrapperPntr(_native));
         }
 
@@ -72,6 +73,7 @@ namespace BulletSharp
 			if (_native != IntPtr.Zero)
 			{
 				//UnityEngine.Debug.Log("Dispose 3");
+				_handle.Free();
 				btActionInterface_delete(_native);
 				_native = IntPtr.Zero;
 			}

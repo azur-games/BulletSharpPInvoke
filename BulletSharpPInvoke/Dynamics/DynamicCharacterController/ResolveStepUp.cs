@@ -1,8 +1,9 @@
-﻿using BulletSharp.Math;
+﻿using System;
+using BulletSharp.Math;
 
 namespace BulletSharp
 {
-    public class ResolveStepUp
+    public class ResolveStepUp : IDisposable
 	{
 		public bool IsStep;
 		public Vector3 RealPosWorld;
@@ -160,6 +161,11 @@ namespace BulletSharp
 			}
 
 			return true;
+		}
+
+		public void Dispose()
+		{
+			_closestRay.Dispose();
 		}
 	};
 }

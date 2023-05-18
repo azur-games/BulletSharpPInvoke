@@ -128,16 +128,17 @@ namespace BulletSharp
 
         AddSingleResultUnmanagedDelegate _addSingleResult;
         NeedsCollisionUnmanagedDelegate _needsCollision;
+        private GCHandle _handle;
 
         public ContactResultCallback()
         {
             _addSingleResult = AddSingleResultUnmanaged;
             _needsCollision = NeedsCollisionUnmanaged;
-			GCHandle handle = GCHandle.Alloc(this, GCHandleType.Normal);
+			_handle = GCHandle.Alloc(this, GCHandleType.Normal);
             _native = btCollisionWorld_ContactResultCallbackWrapper_new(
                 Marshal.GetFunctionPointerForDelegate(_addSingleResult),
                 Marshal.GetFunctionPointerForDelegate(_needsCollision),
-				GCHandle.ToIntPtr(handle));
+				GCHandle.ToIntPtr(_handle));
         }
 
 		[MonoPInvokeCallback(typeof(AddSingleResultUnmanagedDelegate))]
@@ -186,6 +187,7 @@ namespace BulletSharp
 			if (_native != IntPtr.Zero)
 			{
 				btCollisionWorld_ContactResultCallback_delete(_native);
+				_handle.Free();
 				_native = IntPtr.Zero;
 			}
 		}
@@ -626,16 +628,17 @@ namespace BulletSharp
 
 		AddSingleResultUnmanagedDelegate _addSingleResult;
 		NeedsCollisionUnmanagedDelegate _needsCollision;
+		private GCHandle _handle;
 
 		protected RayResultCallback()
 		{
 			_addSingleResult = AddSingleResultUnmanaged;
 			_needsCollision = NeedsCollisionUnmanaged;
-			GCHandle handle = GCHandle.Alloc(this, GCHandleType.Normal);
+			_handle = GCHandle.Alloc(this, GCHandleType.Normal);
 			_native = btCollisionWorld_RayResultCallbackWrapper_new(
 				Marshal.GetFunctionPointerForDelegate(_addSingleResult),
 				Marshal.GetFunctionPointerForDelegate(_needsCollision),
-				GCHandle.ToIntPtr(handle));
+				GCHandle.ToIntPtr(_handle));
 		}
 
 		[MonoPInvokeCallback(typeof(AddSingleResultUnmanagedDelegate))]
@@ -705,6 +708,7 @@ namespace BulletSharp
 			if (_native != IntPtr.Zero)
 			{
 				btCollisionWorld_RayResultCallback_delete(_native);
+				_handle.Free();
 				_native = IntPtr.Zero;
 			}
 		}
