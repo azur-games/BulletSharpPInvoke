@@ -23,4 +23,4 @@ jobs:
     - name: Build
       run: dotnet build ./BulletSharpPInvoke --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test ./BulletSharpPInvoke --no-restore --verbosity normal
