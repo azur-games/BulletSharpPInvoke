@@ -28,6 +28,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: dotnet-results-${{ matrix.dotnet-version }}
-        path: /BulletSharpPInvoke/bin/Release/netstandard2.0${{ matrix.dotnet-version }}
+        path: ./BulletSharpPInvoke/bin/Release/netstandard2.0${{ matrix.dotnet-version }}
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
