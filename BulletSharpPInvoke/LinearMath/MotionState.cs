@@ -17,6 +17,7 @@ namespace BulletSharp
 
         GetWorldTransformUnmanagedDelegate _getWorldTransform;
         SetWorldTransformUnmanagedDelegate _setWorldTransform;
+        private GCHandle _handle;
 
 		internal MotionState(IntPtr native)
 		{
@@ -28,12 +29,12 @@ namespace BulletSharp
             _getWorldTransform = new GetWorldTransformUnmanagedDelegate(GetWorldTransformUnmanaged);
             _setWorldTransform = new SetWorldTransformUnmanagedDelegate(SetWorldTransformUnmanaged);
 
-			GCHandle handle = GCHandle.Alloc(this, GCHandleType.Normal);
+            _handle = GCHandle.Alloc(this, GCHandleType.Normal);
 			//UnityEngine.Debug.Log("Created MoState" + GCHandle.ToIntPtr(handle).ToInt64());
             _native = btMotionStateWrapper_new(
                 Marshal.GetFunctionPointerForDelegate(_getWorldTransform),
                 Marshal.GetFunctionPointerForDelegate(_setWorldTransform),
-				GCHandle.ToIntPtr(handle));
+				GCHandle.ToIntPtr(_handle));
         }
 
 		[MonoPInvokeCallback(typeof(GetWorldTransformUnmanagedDelegate))]
@@ -77,6 +78,7 @@ namespace BulletSharp
 			if (_native != IntPtr.Zero)
 			{
 				btMotionState_delete(_native);
+				_handle.Free();
 				_native = IntPtr.Zero;
 			}
 		}
