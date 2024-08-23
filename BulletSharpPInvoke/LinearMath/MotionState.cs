@@ -30,6 +30,7 @@ namespace BulletSharp
             _setWorldTransform = new SetWorldTransformUnmanagedDelegate(SetWorldTransformUnmanaged);
 
             _handle = GCHandle.Alloc(this, GCHandleType.Normal);
+	        
 			//UnityEngine.Debug.Log("Created MoState" + GCHandle.ToIntPtr(handle).ToInt64());
             _native = btMotionStateWrapper_new(
                 Marshal.GetFunctionPointerForDelegate(_getWorldTransform),
@@ -78,7 +79,9 @@ namespace BulletSharp
 			if (_native != IntPtr.Zero)
 			{
 				btMotionState_delete(_native);
-				_handle.Free();
+				if(_handle.IsAllocated)
+					_handle.Free();
+				
 				_native = IntPtr.Zero;
 			}
 		}
