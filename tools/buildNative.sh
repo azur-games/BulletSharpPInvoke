@@ -20,4 +20,8 @@ ndk-build
 mkdir -p /src/build/arm_v7/ /src/build/arm_v8/ /src/build/x86/
 cp /src/libbulletc/libbulletc-Android/libs/armeabi-v7a/* /src/build/arm_v7/
 cp /src/libbulletc/libbulletc-Android/libs/arm64-v8a/*   /src/build/arm_v8/
-cp /src/libbulletc/libbulletc-Android/libs/x86/*         /src/build/x86/
+#cp /src/libbulletc/libbulletc-Android/libs/x86/*         /src/build/x86/
+
+cp /src/libbulletc/libbulletc-Android/obj/local/armeabi-v7a/* /src/build/arm_v7_with_symbolds/
+cp /src/libbulletc/libbulletc-Android/obj/local/arm64-v8a/*   /src/build/arm_v8_with_symbolds/
+#cp /src/libbulletc/libbulletc-Android/obj/local/x86/*         /src/build/x86/
