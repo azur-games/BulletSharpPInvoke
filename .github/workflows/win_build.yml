@@ -22,7 +22,7 @@ jobs:
         run: msbuild.exe ./libbulletc/libbulletc-Windows/libbulletc/libbulletc.vcxproj /p:configuration=release /p:platform=x64
 
       - name: Upload native libbulletc
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Engine Dll(x64)
           if-no-files-found: error

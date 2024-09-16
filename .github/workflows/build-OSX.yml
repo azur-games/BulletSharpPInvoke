@@ -17,7 +17,7 @@ jobs:
         run: 
           ./tools/buildOSX.sh
           
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: OSXBinaries
           path: ./libbulletc/libbulletc-OSX/build/Release
