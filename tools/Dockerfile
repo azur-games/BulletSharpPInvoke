@@ -9,10 +9,10 @@ ENV ANDROID_HOME /android
 ENV PATH "${ANDROID_HOME}/cmdline-tools/tools/bin/:${PATH}"
 ENV PATH "${ANDROID_HOME}/emulator/:${PATH}"
 ENV PATH "${ANDROID_HOME}/platform-tools/:${PATH}"
-ENV PATH "${ANDROID_HOME}/ndk/23.0.7599858/:${PATH}"
+ENV PATH "${ANDROID_HOME}/ndk/28.2.13676358/:${PATH}"
 
 # required for ndk-build
-ENV NDK_PATH "/android/ndk/23.0.7599858"
+ENV NDK_PATH "/android/ndk/28.2.13676358"
 
 #wget
 RUN apt-get update \
@@ -45,7 +45,7 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-7583922
 #install ndk
 RUN yes | sdkmanager --licenses \
 && sdkmanager --list \
-&& sdkmanager "ndk;23.0.7599858"
+&& sdkmanager "ndk;28.2.13676358"
 
 #mingw
 RUN apt-get -y install gcc-mingw-w64-x86-64
